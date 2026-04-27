@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
 import ServiceDetail from './pages/ServiceDetail';
+import OurDoctors from './pages/OurDoctors';
 import DoctorProfile from './pages/DoctorProfile';
 import Gallery from './pages/Gallery';
 import Blog from './pages/Blog';
@@ -25,6 +26,7 @@ import AdminLogin from './admin/AdminLogin';
 import AdminLayout from './admin/AdminLayout';
 import AdminDashboard from './admin/AdminDashboard';
 import ManageAppointments from './admin/ManageAppointments';
+import ManageDoctors from './admin/ManageDoctors';
 import ManageBlog from './admin/ManageBlog';
 import ManageGallery from './admin/ManageGallery';
 import ManageContacts from './admin/ManageContacts';
@@ -54,7 +56,9 @@ export default function App() {
               <Route path="/about" element={<PublicLayout><About /></PublicLayout>} />
               <Route path="/services" element={<PublicLayout><Services /></PublicLayout>} />
               <Route path="/services/:slug" element={<PublicLayout><ServiceDetail /></PublicLayout>} />
+              <Route path="/doctors" element={<PublicLayout><OurDoctors /></PublicLayout>} />
               <Route path="/doctor/aslam-al-mehdi" element={<PublicLayout><DoctorProfile /></PublicLayout>} />
+              <Route path="/doctor/:slug" element={<PublicLayout><DoctorProfile /></PublicLayout>} />
               <Route path="/gallery" element={<PublicLayout><Gallery /></PublicLayout>} />
               <Route path="/blog" element={<PublicLayout><Blog /></PublicLayout>} />
               <Route path="/blog/:slug" element={<PublicLayout><BlogPost /></PublicLayout>} />
@@ -66,6 +70,7 @@ export default function App() {
               <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<AdminDashboard />} />
                 <Route path="appointments" element={<ManageAppointments />} />
+                <Route path="doctors" element={<ManageDoctors />} />
                 <Route path="blog" element={<ManageBlog />} />
                 <Route path="gallery" element={<ManageGallery />} />
                 <Route path="contacts" element={<ManageContacts />} />

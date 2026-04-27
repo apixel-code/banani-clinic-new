@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Link, NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Calendar, FileText, Image, MessageSquare, LogOut, Menu, ExternalLink } from 'lucide-react';
+import { LayoutDashboard, Calendar, FileText, Image, MessageSquare, LogOut, Menu, ExternalLink, Stethoscope } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 const navItems = [
   { path: '/admin', label: 'Dashboard', icon: <LayoutDashboard size={18} />, exact: true },
   { path: '/admin/appointments', label: 'Appointments', icon: <Calendar size={18} /> },
+  { path: '/admin/doctors', label: 'Doctors', icon: <Stethoscope size={18} /> },
   { path: '/admin/blog', label: 'Blog Posts', icon: <FileText size={18} /> },
   { path: '/admin/gallery', label: 'Gallery', icon: <Image size={18} /> },
   { path: '/admin/contacts', label: 'Contacts', icon: <MessageSquare size={18} /> },

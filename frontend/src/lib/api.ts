@@ -45,6 +45,15 @@ export async function getGalleryImages() {
   );
 }
 
+export async function getDoctors() {
+  const data = await getJson("/api/doctors?published=true");
+  return data || [];
+}
+
+export async function getDoctorBySlug(slug: string) {
+  return await getJson(`/api/doctors/slug/${slug}?published=true`);
+}
+
 export async function submitContact(payload: any) {
   return await getJson("/api/contacts", {
     method: "POST",
@@ -64,6 +73,8 @@ export default {
   getBlogPosts,
   getBlogPostBySlug,
   getGalleryImages,
+  getDoctors,
+  getDoctorBySlug,
   submitContact,
   submitAppointment,
 };

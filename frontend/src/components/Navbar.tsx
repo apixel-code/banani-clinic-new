@@ -16,7 +16,7 @@ const navLinks = [
       { label: 'All Services →', path: '/services' },
     ],
   },
-  { label: 'Doctor', path: '/doctor/aslam-al-mehdi' },
+  { label: 'Our Doctors', path: '/doctors' },
   { label: 'Gallery', path: '/gallery' },
   { label: 'Blog', path: '/blog' },
   { label: 'Locations', path: '/locations' },
@@ -44,6 +44,8 @@ export default function Navbar() {
   }, [isOpen]);
 
   const solid = scrolled || !isHome;
+  const isActiveLink = (path: string) =>
+    location.pathname === path || (path === '/doctors' && location.pathname.startsWith('/doctor/'));
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${solid ? 'bg-white shadow-md' : 'bg-transparent'}`}>
@@ -77,7 +79,7 @@ export default function Navbar() {
               ) : (
                 <Link key={link.path} to={link.path}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    location.pathname === link.path
+                    isActiveLink(link.path)
                       ? solid ? 'text-blue-600 bg-blue-50' : 'text-white bg-white/20'
                       : solid ? 'text-gray-700 hover:text-blue-600 hover:bg-blue-50' : 'text-white/90 hover:text-white hover:bg-white/10'
                   }`}
@@ -118,7 +120,7 @@ export default function Navbar() {
                 </div>
               ) : (
                 <Link key={link.path} to={link.path}
-                  className={`block px-4 py-4 rounded-xl font-semibold text-base transition-colors ${location.pathname === link.path ? 'text-blue-600 bg-blue-50' : 'text-gray-800 hover:text-blue-600 hover:bg-blue-50'}`}
+                  className={`block px-4 py-4 rounded-xl font-semibold text-base transition-colors ${isActiveLink(link.path) ? 'text-blue-600 bg-blue-50' : 'text-gray-800 hover:text-blue-600 hover:bg-blue-50'}`}
                 >{link.label}</Link>
               )
             )}

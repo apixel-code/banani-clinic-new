@@ -82,6 +82,28 @@ export async function deleteGalleryImage(id: string) {
   return await request(`/api/gallery/${id}`, { method: "DELETE" });
 }
 
+export async function getAllDoctors() {
+  return await request("/api/doctors");
+}
+export async function getDoctorById(id: string) {
+  return await request(`/api/doctors/${id}`);
+}
+export async function createDoctor(payload: any) {
+  return await request("/api/doctors", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+export async function updateDoctor(id: string, payload: any) {
+  return await request(`/api/doctors/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+}
+export async function deleteDoctor(id: string) {
+  return await request(`/api/doctors/${id}`, { method: "DELETE" });
+}
+
 interface CloudinarySignature {
   cloudName: string;
   apiKey: string;
@@ -139,5 +161,10 @@ export default {
   getAllGalleryImages,
   createGalleryImage,
   deleteGalleryImage,
+  getAllDoctors,
+  getDoctorById,
+  createDoctor,
+  updateDoctor,
+  deleteDoctor,
   uploadImageToCloudinary,
 };

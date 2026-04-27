@@ -6,6 +6,7 @@ import adminRouter from './routes/admin.js';
 import appointmentsRouter from './routes/appointments.js';
 import blogRouter from './routes/blog.js';
 import contactsRouter from './routes/contacts.js';
+import doctorsRouter from './routes/doctors.js';
 import galleryRouter from './routes/gallery.js';
 
 dotenv.config();
@@ -24,6 +25,7 @@ app.use('/api/appointments', appointmentsRouter);
 app.use('/api/blog', blogRouter);
 app.use('/api/gallery', galleryRouter);
 app.use('/api/contacts', contactsRouter);
+app.use('/api/doctors', doctorsRouter);
 app.use('/api/admin', adminRouter);
 
 app.get('/', (req, res) => res.send('Banani Clinic Backend'));

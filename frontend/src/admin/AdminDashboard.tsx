@@ -5,6 +5,7 @@ import {
   FileText,
   Image,
   MessageSquare,
+  Stethoscope,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -18,6 +19,7 @@ interface Stats {
   contacts: number;
   posts: number;
   gallery: number;
+  doctors: number;
 }
 
 export default function AdminDashboard() {
@@ -31,8 +33,9 @@ export default function AdminDashboard() {
       adminApi.getAllContacts(),
       adminApi.getAllBlogPosts(),
       adminApi.getAllGalleryImages(),
+      adminApi.getAllDoctors(),
     ])
-      .then(([appts, contacts, posts, gallery]) => {
+      .then(([appts, contacts, posts, gallery, doctors]) => {
         const a = appts || [];
         setStats({
           total: a.length,
@@ -42,6 +45,7 @@ export default function AdminDashboard() {
           contacts: (contacts || []).length || 0,
           posts: (posts || []).length || 0,
           gallery: (gallery || []).length || 0,
+          doctors: (doctors || []).length || 0,
         });
         setRecent((a as any[]).slice(0, 5));
         setLoading(false);
@@ -149,8 +153,15 @@ export default function AdminDashboard() {
       </div>
 
       {/* Secondary stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
+          {
+            label: "Doctors",
+            value: stats?.doctors,
+            path: "/admin/doctors",
+            icon: <Stethoscope size={18} />,
+            color: "#0891b2",
+          },
           {
             label: "Contact Submissions",
             value: stats?.contacts,
