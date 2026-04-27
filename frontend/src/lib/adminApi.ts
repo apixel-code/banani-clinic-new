@@ -36,6 +36,9 @@ export async function updateAppointment(id: string, payload: any) {
     body: JSON.stringify(payload),
   });
 }
+export async function deleteAppointment(id: string) {
+  return await request(`/api/appointments/${id}`, { method: "DELETE" });
+}
 
 export async function getAllContacts() {
   return await request("/api/contacts");
@@ -151,6 +154,7 @@ export default {
   login,
   getAllAppointments,
   updateAppointment,
+  deleteAppointment,
   getAllContacts,
   updateContact,
   getAllBlogPosts,

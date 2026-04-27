@@ -1,5 +1,6 @@
-import { RefreshCw, Search } from "lucide-react";
+import { RefreshCw, Search, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
+import DeleteConfirmModal from "../components/DeleteConfirmModal";
 import { useToast } from "../components/Toast";
 import adminApi from "../lib/adminApi";
 
@@ -11,6 +12,8 @@ export default function ManageAppointments() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [updating, setUpdating] = useState<string | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<any | null>(null);
+  const [deleting, setDeleting] = useState(false);
   const toast = useToast();
 
   const load = () => {
@@ -47,6 +50,26 @@ export default function ManageAppointments() {
   };
 
   const getAppointmentId = (appointment: any) => appointment._id || appointment.id;
+
+  const remove = async () => {
+    const appointmentId = getAppointmentId(deleteTarget);
+    if (!appointmentId) {
+      toast("Missing appointment ID.", "error");
+      return;
+    }
+
+    setDeleting(true);
+    try {
+      await adminApi.deleteAppointment(appointmentId);
+      toast("Appointment deleted.", "success");
+      setDeleteTarget(null);
+      load();
+    } catch (err) {
+      toast("Failed to delete appointment.", "error");
+    } finally {
+      setDeleting(false);
+    }
+  };
 
   const filtered = appointments.filter((a) => {
     const q = search.toLowerCase();
@@ -187,24 +210,34 @@ export default function ManageAppointments() {
                           </span>
                         </td>
                         <td className="px-4 py-3">
-                          <select
-                            disabled={!appointmentId || updating === appointmentId}
-                            value={a.status}
-                            onChange={(e) => updateStatus(appointmentId, e.target.value)}
-                            className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 bg-white cursor-pointer focus:outline-none focus:ring-1"
-                            style={{ color: "#1A3A5C" }}
-                          >
-                            {[
-                              "pending",
-                              "confirmed",
-                              "completed",
-                              "cancelled",
-                            ].map((s) => (
-                              <option key={s} value={s} className="capitalize">
-                                {s}
-                              </option>
-                            ))}
-                          </select>
+                          <div className="flex items-center gap-2">
+                            <select
+                              disabled={!appointmentId || updating === appointmentId}
+                              value={a.status}
+                              onChange={(e) => updateStatus(appointmentId, e.target.value)}
+                              className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 bg-white cursor-pointer focus:outline-none focus:ring-1"
+                              style={{ color: "#1A3A5C" }}
+                            >
+                              {[
+                                "pending",
+                                "confirmed",
+                                "completed",
+                                "cancelled",
+                              ].map((s) => (
+                                <option key={s} value={s} className="capitalize">
+                                  {s}
+                                </option>
+                              ))}
+                            </select>
+                            <button
+                              onClick={() => setDeleteTarget(a)}
+                              disabled={!appointmentId}
+                              className="w-8 h-8 flex items-center justify-center rounded-lg bg-red-50 text-red-500 hover:bg-red-100 disabled:opacity-50 transition-colors"
+                              aria-label="Delete appointment"
+                            >
+                              <Trash2 size={14} />
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     );
@@ -226,6 +259,16 @@ export default function ManageAppointments() {
           {filtered.length} result{filtered.length !== 1 ? "s" : ""}
         </div>
       </div>
+      <DeleteConfirmModal
+        open={!!deleteTarget}
+        title="Delete Appointment"
+        message="Are you sure you want to permanently delete this appointment?"
+        itemName={deleteTarget ? `${deleteTarget.patient_name} - ${deleteTarget.service}` : ""}
+        confirmLabel="Delete Appointment"
+        loading={deleting}
+        onCancel={() => setDeleteTarget(null)}
+        onConfirm={remove}
+      />
     </div>
   );
 }
