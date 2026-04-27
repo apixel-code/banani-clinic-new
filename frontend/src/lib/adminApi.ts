@@ -81,6 +81,12 @@ export async function createGalleryImage(payload: any) {
     body: JSON.stringify(payload),
   });
 }
+export async function updateGalleryImage(id: string, payload: any) {
+  return await request(`/api/gallery/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(payload),
+  });
+}
 export async function deleteGalleryImage(id: string) {
   return await request(`/api/gallery/${id}`, { method: "DELETE" });
 }
@@ -164,6 +170,7 @@ export default {
   getBlogPostById,
   getAllGalleryImages,
   createGalleryImage,
+  updateGalleryImage,
   deleteGalleryImage,
   getAllDoctors,
   getDoctorById,

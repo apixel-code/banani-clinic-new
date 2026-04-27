@@ -1,8 +1,8 @@
-import { ImageOff, Plus, Save, Trash2, X } from "lucide-react";
+import { ImageOff, Pencil, Plus, Save, Trash2, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useToast } from "../components/Toast";
 import DeleteConfirmModal from "../components/DeleteConfirmModal";
 import ImageUploadField from "../components/ImageUploadField";
+import { useToast } from "../components/Toast";
 import adminApi from "../lib/adminApi";
 
 const CATS = ["Clinic", "Before & After", "Procedures", "Team"];
@@ -13,10 +13,13 @@ export default function ManageGallery() {
   const [loading, setLoading] = useState(true);
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState({ ...empty });
+  const [editTarget, setEditTarget] = useState<any | null>(null);
   const [saving, setSaving] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<any | null>(null);
   const [deleting, setDeleting] = useState(false);
   const toast = useToast();
+
+  const getImageId = (image: any) => image?._id || image?.id;
 
   const load = () => {
     setLoading(true);
@@ -38,21 +41,29 @@ export default function ManageGallery() {
       toast("Image URL is required.", "error");
       return;
     }
+
+    const imageId = getImageId(editTarget);
     setSaving(true);
     try {
-      await adminApi.createGalleryImage(form);
+      if (imageId) {
+        await adminApi.updateGalleryImage(imageId, form);
+      } else {
+        await adminApi.createGalleryImage(form);
+      }
       setSaving(false);
-      toast("Image added!", "success");
+      toast(imageId ? "Image updated!" : "Image added!", "success");
       setModal(false);
+      setEditTarget(null);
       setForm({ ...empty });
       load();
     } catch (err) {
       setSaving(false);
-      toast("Failed to add image.", "error");
+      toast(
+        imageId ? "Failed to update image." : "Failed to add image.",
+        "error",
+      );
     }
   };
-
-  const getImageId = (image: any) => image?._id || image?.id;
 
   const remove = async () => {
     const id = getImageId(deleteTarget);
@@ -81,6 +92,7 @@ export default function ManageGallery() {
         <button
           onClick={() => {
             setModal(true);
+            setEditTarget(null);
             setForm({ ...empty });
           }}
           className="btn-primary text-sm px-4 py-2.5"
@@ -111,49 +123,65 @@ export default function ManageGallery() {
             const imageId = getImageId(img);
             const rowKey = imageId || `${img.url}-${img.created_at}`;
             return (
-            <div
-              key={rowKey}
-              className="relative group aspect-square bg-gray-100 rounded-xl overflow-hidden"
-            >
-              <img
-                src={img.url}
-                alt={img.alt_text || img.caption}
-                className="w-full h-full object-cover"
-                loading="lazy"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src =
-                    "https://images.pexels.com/photos/3845806/pexels-photo-3845806.jpeg";
-                }}
-              />
               <div
-                className="absolute inset-0 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                style={{ background: "rgba(26,58,92,0.7)" }}
+                key={rowKey}
+                className="relative group aspect-square bg-gray-100 rounded-xl overflow-hidden"
               >
-                <div className="flex justify-end p-2">
-                  <button
-                    onClick={() => setDeleteTarget(img)}
-                    disabled={!imageId}
-                    className="w-8 h-8 bg-red-500 hover:bg-red-600 rounded-lg flex items-center justify-center text-white disabled:opacity-50 transition-colors"
-                  >
-                    <Trash2 size={14} />
-                  </button>
-                </div>
-                <div className="p-2">
-                  <span
-                    className="text-white text-xs font-semibold px-2 py-1 rounded-full"
-                    style={{ backgroundColor: "rgba(43,124,193,0.9)" }}
-                  >
-                    {img.category}
-                  </span>
-                  {img.caption && (
-                    <p className="text-white/80 text-xs mt-1 truncate">
-                      {img.caption}
-                    </p>
-                  )}
+                <img
+                  src={img.url}
+                  alt={img.alt_text || img.caption}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src =
+                      "https://images.pexels.com/photos/3845806/pexels-photo-3845806.jpeg";
+                  }}
+                />
+                <div
+                  className="absolute inset-0 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                  style={{ background: "rgba(26,58,92,0.7)" }}
+                >
+                  <div className="flex justify-end gap-2 p-2">
+                    <button
+                      onClick={() => {
+                        setEditTarget(img);
+                        setForm({
+                          url: img.url || "",
+                          caption: img.caption || "",
+                          category: img.category || "Clinic",
+                          alt_text: img.alt_text || "",
+                        });
+                        setModal(true);
+                      }}
+                      className="w-8 h-8 bg-blue-500 hover:bg-blue-600 rounded-lg flex items-center justify-center text-white transition-colors"
+                    >
+                      <Pencil size={14} />
+                    </button>
+                    <button
+                      onClick={() => setDeleteTarget(img)}
+                      disabled={!imageId}
+                      className="w-8 h-8 bg-red-500 hover:bg-red-600 rounded-lg flex items-center justify-center text-white disabled:opacity-50 transition-colors"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                  <div className="p-2">
+                    <span
+                      className="text-white text-xs font-semibold px-2 py-1 rounded-full"
+                      style={{ backgroundColor: "rgba(43,124,193,0.9)" }}
+                    >
+                      {img.category}
+                    </span>
+                    {img.caption && (
+                      <p className="text-white/80 text-xs mt-1 truncate">
+                        {img.caption}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          );})}
+            );
+          })}
         </div>
       )}
 
@@ -162,10 +190,14 @@ export default function ManageGallery() {
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md">
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
               <h2 className="font-bold" style={{ color: "#1A3A5C" }}>
-                Add Gallery Image
+                {editTarget ? "Edit Gallery Image" : "Add Gallery Image"}
               </h2>
               <button
-                onClick={() => setModal(false)}
+                onClick={() => {
+                  setModal(false);
+                  setEditTarget(null);
+                  setForm({ ...empty });
+                }}
                 className="text-gray-400 hover:text-gray-600"
               >
                 <X size={20} />
@@ -220,7 +252,11 @@ export default function ManageGallery() {
             </div>
             <div className="flex justify-end gap-3 px-6 py-4 border-t border-gray-100">
               <button
-                onClick={() => setModal(false)}
+                onClick={() => {
+                  setModal(false);
+                  setEditTarget(null);
+                  setForm({ ...empty });
+                }}
                 className="px-4 py-2 text-sm rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50"
               >
                 Cancel
@@ -234,7 +270,8 @@ export default function ManageGallery() {
                   "Saving..."
                 ) : (
                   <>
-                    <Save size={15} /> Add Image
+                    <Save size={15} />{" "}
+                    {editTarget ? "Update Image" : "Add Image"}
                   </>
                 )}
               </button>
@@ -246,7 +283,9 @@ export default function ManageGallery() {
         open={!!deleteTarget}
         title="Delete Gallery Image"
         message="Are you sure you want to permanently delete this gallery image?"
-        itemName={deleteTarget?.caption || deleteTarget?.alt_text || deleteTarget?.url}
+        itemName={
+          deleteTarget?.caption || deleteTarget?.alt_text || deleteTarget?.url
+        }
         confirmLabel="Delete Image"
         loading={deleting}
         onCancel={() => setDeleteTarget(null)}
