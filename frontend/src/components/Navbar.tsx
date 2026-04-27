@@ -84,15 +84,15 @@ export default function Navbar() {
                 RD
               </span>
             </div>
-            <div className="hidden sm:block">
+            <div className="block min-w-0 max-w-[128px] sm:max-w-none">
               <div
-                className={`font-bold text-xs md:text-sm leading-tight transition-colors ${solid ? "text-navy-DEFAULT" : "text-white"}`}
+                className={`font-bold text-[10px] sm:text-xs md:text-sm leading-tight transition-colors ${solid ? "text-navy-DEFAULT" : "text-white"}`}
                 style={{ color: solid ? "#1A3A5C" : "white" }}
               >
                 Royal Dental & Maxillofacial
               </div>
               <div
-                className="text-xs"
+                className="text-[9px] sm:text-xs leading-tight"
                 style={{ color: solid ? "#8A9BB0" : "#bfdbfe" }}
               >
                 Banani Clinic Ltd.

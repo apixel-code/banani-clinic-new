@@ -9,6 +9,7 @@ const CATS = ["All", "Before & After", "Clinic", "Team", "Procedures"];
 
 interface GalleryImage {
   id: string;
+  _id?: string;
   url: string;
   caption: string;
   category: string;
@@ -154,7 +155,7 @@ export default function Gallery() {
               <div className="columns-2 sm:columns-3 lg:columns-4 gap-3 md:gap-4 space-y-3 md:space-y-4">
                 {filtered.map((img, i) => (
                   <div
-                    key={img.id}
+                    key={img._id || img.id || `${img.url}-${i}`}
                     className="fade-in break-inside-avoid group relative overflow-hidden rounded-xl cursor-pointer shadow-sm hover:shadow-xl transition-all duration-300"
                     style={{ animationDelay: `${i * 0.05}s` }}
                     onClick={() => setLightbox(i)}
