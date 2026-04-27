@@ -2,10 +2,25 @@ import { Mail, Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import adminApi from "../lib/adminApi";
 
+function formatDate(value: string | Date | null | undefined) {
+  if (!value) return "—";
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "—";
+
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
 export default function ManageContacts() {
   const [contacts, setContacts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState<any | null>(null);
+
+  const getContactId = (contact: any) => contact?._id || contact?.id;
 
   const load = () => {
     setLoading(true);
@@ -24,11 +39,17 @@ export default function ManageContacts() {
 
   const view = async (contact: any) => {
     setSelected(contact);
+    const contactId = getContactId(contact);
+
+    if (!contactId) return;
+
     if (!contact.read) {
       try {
-        await adminApi.updateContact(contact.id, { read: true });
+        await adminApi.updateContact(contactId, { read: true });
         setContacts((prev) =>
-          prev.map((c) => (c.id === contact.id ? { ...c, read: true } : c)),
+          prev.map((c) =>
+            getContactId(c) === contactId ? { ...c, read: true } : c,
+          ),
         );
       } catch (err) {
         /* ignore */
@@ -88,7 +109,10 @@ export default function ManageContacts() {
                     </tr>
                   ))
                 : contacts.map((c) => (
-                    <tr key={c.id} className="hover:bg-gray-50">
+                    <tr
+                      key={getContactId(c) || `${c.phone}-${c.created_at}`}
+                      className="hover:bg-gray-50"
+                    >
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-2">
                           {!c.read && (
@@ -116,7 +140,7 @@ export default function ManageContacts() {
                         {c.email || "—"}
                       </td>
                       <td className="px-4 py-3 text-gray-500 text-xs">
-                        {c.preferred_date || "—"}
+                        {formatDate(c.preferred_date)}
                       </td>
                       <td className="px-4 py-3 text-gray-500 text-xs whitespace-nowrap">
                         {new Date(c.created_at).toLocaleDateString("en-US", {
@@ -219,7 +243,7 @@ export default function ManageContacts() {
                       className="text-sm font-semibold"
                       style={{ color: "#1A3A5C" }}
                     >
-                      {selected.preferred_date}
+                      {formatDate(selected.preferred_date)}
                     </p>
                   </div>
                 )}
