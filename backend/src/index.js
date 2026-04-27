@@ -9,7 +9,6 @@ import contactsRouter from './routes/contacts.js';
 import galleryRouter from './routes/gallery.js';
 
 dotenv.config();
-
 const app = express();
 app.use(cors());
 app.use(express.json());

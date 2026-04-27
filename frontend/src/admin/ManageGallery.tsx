@@ -1,6 +1,7 @@
 import { ImageOff, Plus, Save, Trash2, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useToast } from "../components/Toast";
+import DeleteConfirmModal from "../components/DeleteConfirmModal";
 import adminApi from "../lib/adminApi";
 
 const CATS = ["Clinic", "Before & After", "Procedures", "Team"];
@@ -13,6 +14,8 @@ export default function ManageGallery() {
   const [form, setForm] = useState({ ...empty });
   const [saving, setSaving] = useState(false);
   const [previewError, setPreviewError] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState<any | null>(null);
+  const [deleting, setDeleting] = useState(false);
   const toast = useToast();
 
   const load = () => {
@@ -49,14 +52,25 @@ export default function ManageGallery() {
     }
   };
 
-  const remove = async (id: string) => {
-    if (!confirm("Delete this image?")) return;
+  const getImageId = (image: any) => image?._id || image?.id;
+
+  const remove = async () => {
+    const id = getImageId(deleteTarget);
+    if (!id) {
+      toast("Missing image ID.", "error");
+      return;
+    }
+
+    setDeleting(true);
     try {
       await adminApi.deleteGalleryImage(id);
       toast("Image deleted.", "success");
+      setDeleteTarget(null);
       load();
     } catch (err) {
       toast("Failed to delete image.", "error");
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -94,9 +108,12 @@ export default function ManageGallery() {
         </div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          {images.map((img) => (
+          {images.map((img) => {
+            const imageId = getImageId(img);
+            const rowKey = imageId || `${img.url}-${img.created_at}`;
+            return (
             <div
-              key={img.id}
+              key={rowKey}
               className="relative group aspect-square bg-gray-100 rounded-xl overflow-hidden"
             >
               <img
@@ -115,8 +132,9 @@ export default function ManageGallery() {
               >
                 <div className="flex justify-end p-2">
                   <button
-                    onClick={() => remove(img.id)}
-                    className="w-8 h-8 bg-red-500 hover:bg-red-600 rounded-lg flex items-center justify-center text-white transition-colors"
+                    onClick={() => setDeleteTarget(img)}
+                    disabled={!imageId}
+                    className="w-8 h-8 bg-red-500 hover:bg-red-600 rounded-lg flex items-center justify-center text-white disabled:opacity-50 transition-colors"
                   >
                     <Trash2 size={14} />
                   </button>
@@ -136,7 +154,7 @@ export default function ManageGallery() {
                 </div>
               </div>
             </div>
-          ))}
+          );})}
         </div>
       )}
 
@@ -247,6 +265,16 @@ export default function ManageGallery() {
           </div>
         </div>
       )}
+      <DeleteConfirmModal
+        open={!!deleteTarget}
+        title="Delete Gallery Image"
+        message="Are you sure you want to permanently delete this gallery image?"
+        itemName={deleteTarget?.caption || deleteTarget?.alt_text || deleteTarget?.url}
+        confirmLabel="Delete Image"
+        loading={deleting}
+        onCancel={() => setDeleteTarget(null)}
+        onConfirm={remove}
+      />
     </div>
   );
 }

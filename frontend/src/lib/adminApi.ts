@@ -92,6 +92,7 @@ export default {
   createBlogPost,
   updateBlogPost,
   deleteBlogPost,
+  getBlogPostById,
   getAllGalleryImages,
   createGalleryImage,
   deleteGalleryImage,

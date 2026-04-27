@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { buildTitle, DOCTOR_SCHEMA } from '../utils/seoHelpers';
-import { Award, BookOpen, CheckCircle, ArrowRight } from 'lucide-react';
+import { Award, CheckCircle, ArrowRight } from 'lucide-react';
 
 const credentials = [
   { flag: '🇯🇵', degree: 'Ph.D. — Periodontal Plastic Surgery', institution: 'Tokyo Medical and Dental University', year: '2014' },

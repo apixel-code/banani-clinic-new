@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Plus, Pencil as Edit2, Trash2, Eye, EyeOff, X, Save } from 'lucide-react';
 import adminApi from '../lib/adminApi';
 import { useToast } from '../components/Toast';
+import DeleteConfirmModal from '../components/DeleteConfirmModal';
 
 const CATEGORIES = ['Dental Health Tips', 'Treatment Guide', 'Patient Stories', 'Clinic News'];
 const emptyPost = { title: '', slug: '', excerpt: '', content: '', meta_description: '', og_image: '', author: 'Dr. Aslam Al Mehdi', category: 'Dental Health Tips', tags: [], published: false };
@@ -11,6 +12,8 @@ export default function ManageBlog() {
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState<any | null>(null);
   const [saving, setSaving] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState<any | null>(null);
+  const [deleting, setDeleting] = useState(false);
   const toast = useToast();
 
   const load = () => {
@@ -25,8 +28,9 @@ export default function ManageBlog() {
     setSaving(true);
     const payload = { ...editing, published_at: editing.published ? (editing.published_at || new Date().toISOString()) : null };
     try {
-      if (editing.id) {
-        await adminApi.updateBlogPost(editing.id, payload);
+      const editingId = getPostId(editing);
+      if (editingId) {
+        await adminApi.updateBlogPost(editingId, payload);
       } else {
         await adminApi.createBlogPost(payload);
       }
@@ -47,13 +51,23 @@ export default function ManageBlog() {
     } catch (err) { toast('Failed to update post.', 'error'); }
   };
 
-  const remove = async (id: string) => {
-    if (!confirm('Delete this post permanently?')) return;
+  const getPostId = (post: any) => post?._id || post?.id;
+
+  const remove = async () => {
+    const id = getPostId(deleteTarget);
+    if (!id) {
+      toast('Missing post ID.', 'error');
+      return;
+    }
+
+    setDeleting(true);
     try {
       await adminApi.deleteBlogPost(id);
       toast('Post deleted.', 'success');
+      setDeleteTarget(null);
       load();
     } catch (err) { toast('Failed to delete post.', 'error'); }
+    finally { setDeleting(false); }
   };
 
   const editPost = async (id: string) => {
@@ -81,25 +95,28 @@ export default function ManageBlog() {
             <tbody className="divide-y divide-gray-50">
               {loading ? Array.from({ length: 3 }).map((_, i) => (
                 <tr key={i}>{Array.from({ length: 5 }).map((_, j) => <td key={j} className="px-4 py-3"><div className="h-4 bg-gray-200 rounded animate-pulse" /></td>)}</tr>
-              )) : posts.map((post) => (
-                <tr key={post.id} className="hover:bg-gray-50">
+              )) : posts.map((post) => {
+                const postId = getPostId(post);
+                const rowKey = postId || `${post.slug}-${post.created_at}`;
+                return (
+                <tr key={rowKey} className="hover:bg-gray-50">
                   <td className="px-4 py-3 font-medium text-xs max-w-[200px] truncate" style={{ color: '#1A3A5C' }}>{post.title}</td>
                   <td className="px-4 py-3"><span className="badge text-xs" style={{ backgroundColor: '#EBF4FF', color: '#2268A8' }}>{post.category}</span></td>
                   <td className="px-4 py-3 text-gray-500 text-xs">{post.author}</td>
                   <td className="px-4 py-3">
-                    <button onClick={() => togglePublish(post.id, post.published)} className={`badge text-xs cursor-pointer ${post.published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
+                    <button onClick={() => togglePublish(postId, post.published)} disabled={!postId} className={`badge text-xs cursor-pointer disabled:opacity-50 ${post.published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
                       {post.published ? 'Published' : 'Draft'}
                     </button>
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex gap-2">
-                      <button onClick={() => editPost(post.id)} className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors" style={{ backgroundColor: '#EBF4FF', color: '#2B7CC1' }} onMouseEnter={e => (e.currentTarget.style.backgroundColor='#D6E9FF')} onMouseLeave={e => (e.currentTarget.style.backgroundColor='#EBF4FF')}><Edit2 size={14}/></button>
-                      <button onClick={() => togglePublish(post.id, post.published)} className="w-7 h-7 flex items-center justify-center rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors">{post.published ? <EyeOff size={14}/> : <Eye size={14}/>}</button>
-                      <button onClick={() => remove(post.id)} className="w-7 h-7 flex items-center justify-center rounded-lg bg-red-50 text-red-500 hover:bg-red-100 transition-colors"><Trash2 size={14}/></button>
+                      <button onClick={() => editPost(postId)} disabled={!postId} className="w-7 h-7 flex items-center justify-center rounded-lg transition-colors disabled:opacity-50" style={{ backgroundColor: '#EBF4FF', color: '#2B7CC1' }} onMouseEnter={e => (e.currentTarget.style.backgroundColor='#D6E9FF')} onMouseLeave={e => (e.currentTarget.style.backgroundColor='#EBF4FF')}><Edit2 size={14}/></button>
+                      <button onClick={() => togglePublish(postId, post.published)} disabled={!postId} className="w-7 h-7 flex items-center justify-center rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 disabled:opacity-50 transition-colors">{post.published ? <EyeOff size={14}/> : <Eye size={14}/>}</button>
+                      <button onClick={() => setDeleteTarget(post)} disabled={!postId} className="w-7 h-7 flex items-center justify-center rounded-lg bg-red-50 text-red-500 hover:bg-red-100 disabled:opacity-50 transition-colors"><Trash2 size={14}/></button>
                     </div>
                   </td>
                 </tr>
-              ))}
+              );})}
               {!loading && posts.length === 0 && <tr><td colSpan={5} className="text-center text-gray-400 py-10 text-sm">No posts yet</td></tr>}
             </tbody>
           </table>
@@ -110,13 +127,13 @@ export default function ManageBlog() {
         <div className="fixed inset-0 bg-black/50 z-50 flex items-start justify-center p-4 overflow-y-auto">
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl my-8">
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-              <h2 className="font-bold" style={{ color: '#1A3A5C' }}>{editing.id ? 'Edit Post' : 'New Post'}</h2>
+              <h2 className="font-bold" style={{ color: '#1A3A5C' }}>{getPostId(editing) ? 'Edit Post' : 'New Post'}</h2>
               <button onClick={() => setEditing(null)} className="text-gray-400 hover:text-gray-600"><X size={20}/></button>
             </div>
             <div className="p-6 space-y-4 max-h-[70vh] overflow-y-auto">
               <div>
                 <label className="label">Title *</label>
-                <input className="input-field" value={editing.title} onChange={(e) => setEditing({ ...editing, title: e.target.value, slug: editing.id ? editing.slug : slugify(e.target.value) })} />
+                <input className="input-field" value={editing.title} onChange={(e) => setEditing({ ...editing, title: e.target.value, slug: getPostId(editing) ? editing.slug : slugify(e.target.value) })} />
               </div>
               <div>
                 <label className="label">Slug *</label>
@@ -160,6 +177,16 @@ export default function ManageBlog() {
           </div>
         </div>
       )}
+      <DeleteConfirmModal
+        open={!!deleteTarget}
+        title="Delete Blog Post"
+        message="Are you sure you want to permanently delete this blog post?"
+        itemName={deleteTarget?.title}
+        confirmLabel="Delete Post"
+        loading={deleting}
+        onCancel={() => setDeleteTarget(null)}
+        onConfirm={remove}
+      />
     </div>
   );
 }

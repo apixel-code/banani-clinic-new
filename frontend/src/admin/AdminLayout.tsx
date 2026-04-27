@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Calendar, FileText, Image, MessageSquare, LogOut, Menu, X, ExternalLink } from 'lucide-react';
+import { LayoutDashboard, Calendar, FileText, Image, MessageSquare, LogOut, Menu, ExternalLink } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import LoadingSpinner from '../components/LoadingSpinner';
 

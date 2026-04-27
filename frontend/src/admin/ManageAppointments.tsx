@@ -29,6 +29,11 @@ export default function ManageAppointments() {
   }, []);
 
   const updateStatus = async (id: string, status: string) => {
+    if (!id) {
+      toast("Missing appointment ID.", "error");
+      return;
+    }
+
     setUpdating(id);
     try {
       await adminApi.updateAppointment(id, { status });
@@ -40,6 +45,8 @@ export default function ManageAppointments() {
       toast("Failed to update status.", "error");
     }
   };
+
+  const getAppointmentId = (appointment: any) => appointment._id || appointment.id;
 
   const filtered = appointments.filter((a) => {
     const q = search.toLowerCase();
@@ -135,9 +142,11 @@ export default function ManageAppointments() {
                     </tr>
                   ))
                 : filtered.map((a) => {
+                    const appointmentId = getAppointmentId(a);
+                    const rowKey = appointmentId || `${a.patient_phone}-${a.created_at}`;
                     const s = statusBadgeStyle(a.status);
                     return (
-                      <tr key={a.id} className="hover:bg-gray-50">
+                      <tr key={rowKey} className="hover:bg-gray-50">
                         <td
                           className="px-4 py-3 font-medium text-xs"
                           style={{ color: "#1A3A5C" }}
@@ -174,9 +183,9 @@ export default function ManageAppointments() {
                         </td>
                         <td className="px-4 py-3">
                           <select
-                            disabled={updating === a.id}
+                            disabled={!appointmentId || updating === appointmentId}
                             value={a.status}
-                            onChange={(e) => updateStatus(a.id, e.target.value)}
+                            onChange={(e) => updateStatus(appointmentId, e.target.value)}
                             className="text-xs border border-gray-200 rounded-lg px-2 py-1.5 bg-white cursor-pointer focus:outline-none focus:ring-1"
                             style={{ color: "#1A3A5C" }}
                           >
