@@ -3,6 +3,7 @@ import { Plus, Pencil as Edit2, Trash2, Eye, EyeOff, X, Save } from 'lucide-reac
 import adminApi from '../lib/adminApi';
 import { useToast } from '../components/Toast';
 import DeleteConfirmModal from '../components/DeleteConfirmModal';
+import ImageUploadField from '../components/ImageUploadField';
 
 const CATEGORIES = ['Dental Health Tips', 'Treatment Guide', 'Patient Stories', 'Clinic News'];
 const emptyPost = { title: '', slug: '', excerpt: '', content: '', meta_description: '', og_image: '', author: 'Dr. Aslam Al Mehdi', category: 'Dental Health Tips', tags: [], published: false };
@@ -147,8 +148,13 @@ export default function ManageBlog() {
                   </select>
                 </div>
                 <div>
-                  <label className="label">OG Image URL</label>
-                  <input className="input-field" placeholder="https://..." value={editing.og_image || ''} onChange={(e) => setEditing({ ...editing, og_image: e.target.value })} />
+                  <ImageUploadField
+                    label="OG Image URL"
+                    value={editing.og_image || ''}
+                    onChange={(url) => setEditing({ ...editing, og_image: url })}
+                    folder="banani-clinic/blog"
+                    previewAlt={editing.title || 'Blog image preview'}
+                  />
                 </div>
               </div>
               <div>

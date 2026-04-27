@@ -5,6 +5,7 @@ Express + MongoDB backend for the Banani Clinic frontend. Basic REST endpoints f
 Environment:
 
 - Copy `.env.example` to `.env` and set `MONGODB_URI`.
+- For admin image uploads, also set `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY` and `CLOUDINARY_API_SECRET`.
 
 Run locally:
 

@@ -2,6 +2,7 @@ import { ImageOff, Plus, Save, Trash2, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useToast } from "../components/Toast";
 import DeleteConfirmModal from "../components/DeleteConfirmModal";
+import ImageUploadField from "../components/ImageUploadField";
 import adminApi from "../lib/adminApi";
 
 const CATS = ["Clinic", "Before & After", "Procedures", "Team"];
@@ -13,7 +14,6 @@ export default function ManageGallery() {
   const [modal, setModal] = useState(false);
   const [form, setForm] = useState({ ...empty });
   const [saving, setSaving] = useState(false);
-  const [previewError, setPreviewError] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<any | null>(null);
   const [deleting, setDeleting] = useState(false);
   const toast = useToast();
@@ -82,7 +82,6 @@ export default function ManageGallery() {
           onClick={() => {
             setModal(true);
             setForm({ ...empty });
-            setPreviewError(false);
           }}
           className="btn-primary text-sm px-4 py-2.5"
         >
@@ -173,35 +172,13 @@ export default function ManageGallery() {
               </button>
             </div>
             <div className="p-6 space-y-4">
-              <div>
-                <label className="label">Image URL *</label>
-                <input
-                  className="input-field"
-                  placeholder="https://..."
-                  value={form.url}
-                  onChange={(e) => {
-                    setForm({ ...form, url: e.target.value });
-                    setPreviewError(false);
-                  }}
-                />
-              </div>
-              {form.url && (
-                <div className="rounded-xl overflow-hidden h-40 bg-gray-100">
-                  {previewError ? (
-                    <div className="h-full flex items-center justify-center text-gray-400 text-sm">
-                      <ImageOff size={20} className="mr-2" />
-                      Image not found
-                    </div>
-                  ) : (
-                    <img
-                      src={form.url}
-                      alt="Preview"
-                      className="w-full h-full object-cover"
-                      onError={() => setPreviewError(true)}
-                    />
-                  )}
-                </div>
-              )}
+              <ImageUploadField
+                label="Image URL *"
+                value={form.url}
+                onChange={(url) => setForm({ ...form, url })}
+                folder="banani-clinic/gallery"
+                previewAlt={form.alt_text || form.caption || "Gallery preview"}
+              />
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="label">Category</label>

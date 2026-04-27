@@ -82,6 +82,49 @@ export async function deleteGalleryImage(id: string) {
   return await request(`/api/gallery/${id}`, { method: "DELETE" });
 }
 
+interface CloudinarySignature {
+  cloudName: string;
+  apiKey: string;
+  folder: string;
+  timestamp: number;
+  signature: string;
+}
+
+export async function uploadImageToCloudinary(
+  file: File,
+  folder = "banani-clinic",
+) {
+  const signedUpload: CloudinarySignature = await request(
+    "/api/admin/cloudinary/signature",
+    {
+      method: "POST",
+      body: JSON.stringify({ folder }),
+    },
+  );
+
+  const form = new FormData();
+  form.append("file", file);
+  form.append("api_key", signedUpload.apiKey);
+  form.append("timestamp", String(signedUpload.timestamp));
+  form.append("folder", signedUpload.folder);
+  form.append("signature", signedUpload.signature);
+
+  const res = await fetch(
+    `https://api.cloudinary.com/v1_1/${signedUpload.cloudName}/image/upload`,
+    {
+      method: "POST",
+      body: form,
+    },
+  );
+  const body = await res.json().catch(() => ({}));
+
+  if (!res.ok) {
+    throw new Error(body.error?.message || `Upload failed: ${res.status}`);
+  }
+
+  return body;
+}
+
 export default {
   login,
   getAllAppointments,
@@ -96,4 +139,5 @@ export default {
   getAllGalleryImages,
   createGalleryImage,
   deleteGalleryImage,
+  uploadImageToCloudinary,
 };
