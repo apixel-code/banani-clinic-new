@@ -133,6 +133,7 @@ export default function BookAppointment() {
       });
       setSubmitting(false);
       setDone(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
       setSubmitting(false);
       toast("Failed to submit. Please try again.", "error");
