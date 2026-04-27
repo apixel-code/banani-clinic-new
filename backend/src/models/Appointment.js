@@ -6,6 +6,8 @@ const AppointmentSchema = new mongoose.Schema({
   patient_phone: { type: String, required: true },
   patient_age: { type: String, default: '' },
   service: { type: String, required: true },
+  doctor_id: { type: String, default: '' },
+  doctor_name: { type: String, default: '' },
   branch: { type: String, default: 'main' },
   preferred_date: { type: Date, required: true },
   preferred_time: { type: String, required: true },

@@ -6,6 +6,7 @@ import {
   Clock,
   Mail,
   Phone,
+  Stethoscope,
   User,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -42,12 +43,16 @@ export default function BookAppointment() {
   const [step, setStep] = useState(0);
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [doctors, setDoctors] = useState<any[]>([]);
+  const [doctorsLoading, setDoctorsLoading] = useState(true);
   const [form, setForm] = useState({
     patient_name: "",
     patient_phone: "",
     patient_email: "",
     patient_age: "",
     service: "",
+    doctor_id: "",
+    doctor_name: "",
     branch: "",
     preferred_date: "",
     preferred_time: "",
@@ -72,12 +77,41 @@ export default function BookAppointment() {
     return () => observer.disconnect();
   }, [step]);
 
+  useEffect(() => {
+    let active = true;
+    api
+      .getDoctors()
+      .then((data) => {
+        if (!active) return;
+        setDoctors(data || []);
+        setDoctorsLoading(false);
+      })
+      .catch(() => {
+        if (!active) return;
+        setDoctors([]);
+        setDoctorsLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
   const canNext = () => {
     if (step === 0)
       return form.patient_name.trim() && form.patient_phone.trim();
-    if (step === 1) return form.service && form.branch;
+    if (step === 1) return form.service && form.doctor_id && form.branch;
     if (step === 2) return form.preferred_date && form.preferred_time;
     return true;
+  };
+
+  const selectDoctor = (doctorId: string) => {
+    const doctor = doctors.find((item) => (item._id || item.id || item.slug) === doctorId);
+    setForm({
+      ...form,
+      doctor_id: doctorId,
+      doctor_name: doctor?.name || "",
+    });
   };
 
   const submit = async () => {
@@ -89,6 +123,8 @@ export default function BookAppointment() {
         patient_phone: form.patient_phone,
         patient_age: form.patient_age,
         service: form.service,
+        doctor_id: form.doctor_id,
+        doctor_name: form.doctor_name,
         branch: form.branch,
         preferred_date: form.preferred_date,
         preferred_time: form.preferred_time,
@@ -157,6 +193,8 @@ export default function BookAppointment() {
                 branch: "",
                 preferred_date: "",
                 preferred_time: "",
+                doctor_id: "",
+                doctor_name: "",
                 notes: "",
               });
             }}
@@ -328,7 +366,7 @@ export default function BookAppointment() {
                     className="text-xl font-bold mb-2"
                     style={{ color: "#1A3A5C" }}
                   >
-                    Select Service & Branch
+                    Select Service, Doctor & Branch
                   </h2>
                   <div>
                     <label className="label mb-3">Select Treatment</label>
@@ -351,6 +389,34 @@ export default function BookAppointment() {
                         </button>
                       ))}
                     </div>
+                  </div>
+                  <div>
+                    <label className="label">
+                      <Stethoscope size={16} className="inline mr-1" />
+                      Select Doctor *
+                    </label>
+                    <select
+                      className="input-field"
+                      value={form.doctor_id}
+                      onChange={(e) => selectDoctor(e.target.value)}
+                      disabled={doctorsLoading || doctors.length === 0}
+                    >
+                      <option value="">
+                        {doctorsLoading
+                          ? "Loading doctors..."
+                          : doctors.length === 0
+                            ? "No doctors available"
+                            : "Choose a doctor"}
+                      </option>
+                      {doctors.map((doctor) => {
+                        const doctorId = doctor._id || doctor.id || doctor.slug;
+                        return (
+                          <option key={doctorId} value={doctorId}>
+                            {doctor.name} {doctor.designation ? `- ${doctor.designation}` : ""}
+                          </option>
+                        );
+                      })}
+                    </select>
                   </div>
                   <div>
                     <label className="label mb-3">Select Branch</label>
@@ -485,6 +551,7 @@ export default function BookAppointment() {
                       form.patient_email && ["Email", form.patient_email],
                       form.patient_age && ["Age", form.patient_age],
                       ["Service", form.service],
+                      ["Doctor", form.doctor_name],
                       [
                         "Branch",
                         form.branch === "main"

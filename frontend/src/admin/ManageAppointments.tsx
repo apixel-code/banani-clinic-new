@@ -53,7 +53,8 @@ export default function ManageAppointments() {
     const matchesSearch =
       !q ||
       a.patient_name?.toLowerCase().includes(q) ||
-      a.patient_phone?.includes(q);
+      a.patient_phone?.includes(q) ||
+      a.doctor_name?.toLowerCase().includes(q);
     const matchesStatus = statusFilter === "all" || a.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
@@ -115,6 +116,7 @@ export default function ManageAppointments() {
                   "Patient",
                   "Phone",
                   "Service",
+                  "Doctor",
                   "Date",
                   "Time",
                   "Branch",
@@ -134,7 +136,7 @@ export default function ManageAppointments() {
               {loading
                 ? Array.from({ length: 5 }).map((_, i) => (
                     <tr key={i}>
-                      {Array.from({ length: 8 }).map((_, j) => (
+                      {Array.from({ length: 9 }).map((_, j) => (
                         <td key={j} className="px-4 py-3">
                           <div className="h-4 bg-gray-200 rounded animate-pulse" />
                         </td>
@@ -163,6 +165,9 @@ export default function ManageAppointments() {
                         </td>
                         <td className="px-4 py-3 text-gray-500 text-xs max-w-[130px] truncate">
                           {a.service}
+                        </td>
+                        <td className="px-4 py-3 text-gray-500 text-xs max-w-[150px] truncate">
+                          {a.doctor_name || "-"}
                         </td>
                         <td className="px-4 py-3 text-gray-500 text-xs whitespace-nowrap">
                           {a.preferred_date}
@@ -207,7 +212,7 @@ export default function ManageAppointments() {
               {!loading && filtered.length === 0 && (
                 <tr>
                   <td
-                    colSpan={8}
+                    colSpan={9}
                     className="text-center py-10 text-gray-400 text-sm"
                   >
                     No appointments found
