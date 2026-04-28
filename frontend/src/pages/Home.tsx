@@ -341,7 +341,7 @@ export default function Home() {
                 Our Specialties
               </span>
               <h2 className="section-title fade-in">
-                World-Class Dental Care Under One Roof
+                World Class Dental Treatment & Maxillofacial Surgery
               </h2>
               <p className="section-subtitle max-w-2xl mx-auto fade-in px-4">
                 From routine cleanings to complex maxillofacial surgery — every
