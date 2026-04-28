@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
+import { Link, Navigate, NavLink, Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { LayoutDashboard, Calendar, FileText, Image, MessageSquare, LogOut, Menu, ExternalLink, Stethoscope } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -20,7 +20,7 @@ export default function AdminLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   if (loading) return <div className="min-h-screen flex items-center justify-center"><LoadingSpinner size="lg" /></div>;
-  if (!user) { navigate('/admin/login'); return null; }
+  if (!user) return <Navigate to="/admin/login" replace />;
 
   const currentTitle = navItems.find((n) => n.exact ? location.pathname === n.path : location.pathname.startsWith(n.path))?.label || 'Admin';
 
