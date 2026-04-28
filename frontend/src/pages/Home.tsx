@@ -50,6 +50,7 @@ export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [posts, setPosts] = useState<any[]>([]);
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
+  const [isPainPointsExpanded, setIsPainPointsExpanded] = useState(false);
 
   const showPreviousHeroSlide = () => {
     setActiveHeroSlide((current) =>
@@ -133,7 +134,8 @@ export default function Home() {
               />
             ))}
           </div>
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0F2238]/80 via-[#1A3A5C]/55 to-[#2B7CC1]/35" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0F2238]/55 via-[#1A3A5C]/30 to-[#2B7CC1]/15" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white/0 via-white/5 to-white/18" />
           <div className="container-custom relative z-10 py-10 text-center">
             <div
               className="inline-flex items-center gap-2 border border-white/20 px-3 md:px-4 py-2 rounded-full text-xs md:text-sm font-medium mb-6 md:mb-8"
@@ -227,13 +229,39 @@ export default function Home() {
           <div className="container-custom">
             <div className="text-center mb-10 md:mb-12">
               <h2 className="section-title fade-in">
-                We Know What Holds You Back
+                Best Dental Clinic in Banani
               </h2>
-              <p className="section-subtitle max-w-2xl mx-auto fade-in px-4">
-                Millions avoid dental visits because of fear, confusion, or
-                cost. We have redesigned every step so you arrive nervous and
-                leave relieved.
+              <p
+                className="section-subtitle max-w-2xl mx-auto fade-in px-4 overflow-hidden"
+                style={{
+                  display: isPainPointsExpanded ? "block" : "-webkit-box",
+                  WebkitLineClamp: isPainPointsExpanded ? "unset" : 6,
+                  WebkitBoxOrient: "vertical",
+                }}
+              >
+                Dental & Maxillofacial Surgery, Banani Clinic (Specialized
+                Hospital) is always promised to provide the best oral and dental
+                treatment to the patients with all advance technology and top
+                notch equipment in Bangladesh. Dental & Maxillofacial Surgery,
+                Banani Clinic (Specialized Hospital) ensure you the best
+                hygienic environment to perform the best possible oral and
+                dental treatment. Currently in each department of this center
+                like Dental Implants, Orthodontic Treatment, Cosmetic Dentistry,
+                Oral & Maxillofacial Surgery, Root Canal, Crown, Bridges,
+                Prosthesis, Filing, Periodontist specialist doctors with degrees
+                from home and abroad and highly trained in abroad provide
+                treatment to patients in this center. We have long experience of
+                serving domestic and foreign patients.
               </p>
+              <button
+                type="button"
+                onClick={() => setIsPainPointsExpanded((prev) => !prev)}
+                className="fade-in mt-3 font-semibold text-sm hover:opacity-80 transition-opacity"
+                style={{ color: "#2268A8" }}
+                aria-expanded={isPainPointsExpanded}
+              >
+                {isPainPointsExpanded ? "See less" : "See more"}
+              </button>
             </div>
             <div className="grid md:grid-cols-3 gap-5 md:gap-6">
               {[
