@@ -77,25 +77,26 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link to="/" className="flex items-center gap-2.5 flex-shrink-0">
             <div
-              className="w-9 h-9 md:w-10 md:h-10 rounded-xl flex items-center justify-center shadow-md flex-shrink-0"
-              style={{ backgroundColor: "#2B7CC1" }}
+              className="w-9 h-9 md:w-10 md:h-10 rounded-xl overflow-hidden bg-white shadow-md flex-shrink-0"
             >
-              <span className="text-white font-bold text-xs md:text-sm">
-                RD
-              </span>
+              <img
+                src="/logo.jpeg"
+                alt="Banani Clinic logo"
+                className="w-full h-full object-cover"
+              />
             </div>
-            <div className="block min-w-0 max-w-[128px] sm:max-w-none">
+            <div className="block min-w-0 max-w-[190px] sm:max-w-[240px] lg:max-w-[260px]">
               <div
                 className={`font-bold text-[10px] sm:text-xs md:text-sm leading-tight transition-colors ${solid ? "text-navy-DEFAULT" : "text-white"}`}
                 style={{ color: solid ? "#1A3A5C" : "white" }}
               >
-                Royal Dental & Maxillofacial
+                Dental & Maxillofacial Surgery
               </div>
               <div
-                className="text-[9px] sm:text-xs leading-tight"
+                className="text-[9px] sm:text-[10px] md:text-xs leading-tight"
                 style={{ color: solid ? "#8A9BB0" : "#bfdbfe" }}
               >
-                Banani Clinic Ltd.
+                Banani Clinic (Specialized Hospital)
               </div>
             </div>
           </Link>

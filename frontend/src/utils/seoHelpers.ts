@@ -1,4 +1,4 @@
-export const SITE_NAME = 'Banani Clinic – Royal Dental & Maxillofacial Surgery';
+export const SITE_NAME = 'Dental & Maxillofacial Surgery | Banani Clinic (Specialized Hospital)';
 export const SITE_URL = 'https://bananiclinic.com';
 
 export function buildTitle(pageTitle: string) {
@@ -8,7 +8,7 @@ export function buildTitle(pageTitle: string) {
 export const CLINIC_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': ['MedicalBusiness', 'LocalBusiness'],
-  name: 'Banani Clinic Ltd. – Royal Dental & Maxillofacial Surgery',
+  name: 'Dental & Maxillofacial Surgery | Banani Clinic (Specialized Hospital)',
   url: SITE_URL,
   telephone: '+8801311129952',
   email: 'aslam.almehdi@gmail.com',
@@ -29,6 +29,6 @@ export const DOCTOR_SCHEMA = {
   jobTitle: 'Oral & Maxillofacial Surgeon, Periodontist',
   affiliation: {
     '@type': 'MedicalOrganization',
-    name: 'Banani Clinic Ltd. – Royal Dental & Maxillofacial Surgery',
+    name: 'Dental & Maxillofacial Surgery | Banani Clinic (Specialized Hospital)',
   },
 };

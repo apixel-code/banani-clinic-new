@@ -8,12 +8,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="sm:col-span-2 lg:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#2B7CC1' }}>
-                <span className="text-white font-bold text-sm">RD</span>
+              <div className="w-10 h-10 rounded-xl overflow-hidden bg-white flex-shrink-0">
+                <img src="/logo.jpeg" alt="Banani Clinic logo" className="w-full h-full object-cover" />
               </div>
               <div>
-                <div className="font-bold text-sm text-white leading-tight">Royal Dental &</div>
-                <div className="font-bold text-sm text-white leading-tight">Maxillofacial Surgery</div>
+                <div className="font-bold text-sm text-white leading-tight">Dental & Maxillofacial Surgery</div>
+                <div className="font-bold text-sm text-white leading-tight">Banani Clinic (Specialized Hospital)</div>
               </div>
             </Link>
             <p className="text-sm leading-relaxed mb-5" style={{ color: '#bfdbfe' }}>Dhaka's most trusted oral & maxillofacial surgery clinic. International-grade care, local heart.</p>
@@ -62,7 +62,7 @@ export default function Footer() {
       </div>
       <div className="border-t" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
         <div className="container-custom py-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-center sm:text-left" style={{ color: '#93c5fd' }}>
-          <span>© {new Date().getFullYear()} Banani Clinic Ltd. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Banani Clinic (Specialized Hospital). All rights reserved.</span>
           <span>
             Developed by{' '}
             <a

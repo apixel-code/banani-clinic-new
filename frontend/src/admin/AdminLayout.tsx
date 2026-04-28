@@ -29,9 +29,12 @@ export default function AdminLayout() {
   const SidebarContent = () => (
     <>
       <div className="flex items-center gap-3 px-5 py-5 border-b border-white/10">
-        <div className="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm flex-shrink-0" style={{ backgroundColor: '#2B7CC1' }}>RD</div>
+        <div className="w-9 h-9 rounded-xl overflow-hidden bg-white flex-shrink-0">
+          <img src="/logo.jpeg" alt="Banani Clinic logo" className="w-full h-full object-cover" />
+        </div>
         <div>
           <div className="font-bold text-white text-sm leading-tight">Banani Clinic</div>
+          <div className="text-[11px] leading-tight" style={{ color: '#bfdbfe' }}>Specialized Hospital</div>
           <div className="text-xs" style={{ color: '#93c5fd' }}>Admin Panel</div>
         </div>
       </div>

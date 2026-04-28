@@ -82,7 +82,7 @@ export default function Home() {
         </title>
         <meta
           name="description"
-          content="Banani Clinic – Royal Dental & Maxillofacial Surgery. Painless dental implants, root canals, cosmetic dentistry by Dr. Aslam Al Mehdi. Book today."
+          content="Dental & Maxillofacial Surgery at Banani Clinic (Specialized Hospital). Painless dental implants, root canals, cosmetic dentistry by Dr. Aslam Al Mehdi. Book today."
         />
         <script type="application/ld+json">
           {JSON.stringify(CLINIC_SCHEMA)}
@@ -368,7 +368,7 @@ export default function Home() {
                 <div className="relative max-w-sm mx-auto lg:max-w-none">
                   <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
                     <img
-                      src="https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg"
+                      src="/AslamProfile.jpeg"
                       alt="Dr. Aslam Al Mehdi"
                       className="w-full h-full object-cover"
                       loading="lazy"
