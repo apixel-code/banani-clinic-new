@@ -49,7 +49,7 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-white mb-4 text-sm uppercase tracking-wider">Main Chamber</h3>
             <div className="space-y-3">
-              <div className="flex gap-2.5 text-sm" style={{ color: '#bfdbfe' }}><MapPin size={15} className="flex-shrink-0 mt-0.5" style={{ color: '#5BA5FF' }} /><span>House #78/E, Road #12, Banani, Dhaka-1213</span></div>
+              <div className="flex gap-2.5 text-sm" style={{ color: '#bfdbfe' }}><MapPin size={15} className="flex-shrink-0 mt-0.5" style={{ color: '#5BA5FF' }} /><span>House #116, Road # 15, Block # C, Banani, Dhaka-1213</span></div>
               <div className="flex gap-2.5 text-sm" style={{ color: '#bfdbfe' }}><Phone size={15} className="flex-shrink-0" style={{ color: '#5BA5FF' }} /><div><a href="tel:+8801711780957" className="hover:text-white block">01711-780957</a><a href="tel:+8801711780958" className="hover:text-white block">01711-780958</a></div></div>
               <div className="flex gap-2.5 text-sm" style={{ color: '#bfdbfe' }}><Clock size={15} className="flex-shrink-0" style={{ color: '#5BA5FF' }} /><span>10:00 AM – 9:00 PM</span></div>
             </div>

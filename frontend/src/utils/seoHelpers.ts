@@ -14,7 +14,7 @@ export const CLINIC_SCHEMA = {
   email: 'aslam.almehdi@gmail.com',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'House #78/E, Road #12, Banani',
+    streetAddress: 'House #116, Road # 15, Block # C, Banani',
     addressLocality: 'Dhaka',
     postalCode: '1213',
     addressCountry: 'BD',

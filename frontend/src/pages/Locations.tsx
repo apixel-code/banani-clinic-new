@@ -7,7 +7,7 @@ import { buildTitle } from '../utils/seoHelpers';
 const chambers = [
   {
     name: 'Main Chamber',
-    address: 'House #78/E, Road #12, Banani, Dhaka-1213',
+    address: 'House #116, Road # 15, Block # C, Banani, Dhaka-1213',
     phones: ['01711-780957', '01711-780958'],
     hours: '10:00 AM – 9:00 PM (Daily)',
     email: 'aslam.almehdi@gmail.com',

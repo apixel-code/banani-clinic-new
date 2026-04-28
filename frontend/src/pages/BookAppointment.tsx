@@ -426,7 +426,7 @@ export default function BookAppointment() {
                         {
                           key: "main",
                           name: "Main Chamber",
-                          addr: "House #78/E, Road #12, Banani",
+                          addr: "House #116, Road # 15, Block # C, Banani",
                           hours: "10AM – 9PM",
                         },
                         {

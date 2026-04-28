@@ -130,7 +130,7 @@ export default function Contact() {
                     icon: <MapPin size={22} />,
                     title: "Main Address",
                     lines: [
-                      "House #78/E, Road #12, Banani",
+                      "House #116, Road # 15, Block # C, Banani",
                       "Dhaka-1213, Bangladesh",
                     ],
                     href: undefined,
