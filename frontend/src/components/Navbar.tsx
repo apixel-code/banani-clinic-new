@@ -146,7 +146,7 @@ export default function Navbar() {
               to="/book"
               className="hidden md:inline-flex btn-primary text-sm px-4 py-2.5"
             >
-              Book Now 
+              Book Now
             </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
