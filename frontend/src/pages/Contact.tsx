@@ -110,15 +110,16 @@ export default function Contact() {
                 {[
                   {
                     icon: <Phone size={22} />,
-                    title: "Main Chamber",
+                    title:
+                      "Dental & Maxillofacial Surgery Banani Clinic (Specialized Hospital)",
                     lines: ["01711-780957", "01711-780958"],
                     href: "tel:+8801711780957",
                   },
                   {
                     icon: <Phone size={22} />,
-                    title: "York Hospital Branch",
-                    lines: ["01711-780957", "01711-780958"],
-                    href: "tel:+8801711780957",
+                    title: "BIO Dental & Maxillofacial Surgery Clinic",
+                    lines: ["01711734470", "01711734478"],
+                    href: "tel:+8801711734470",
                   },
                   {
                     icon: <Mail size={22} />,
@@ -128,9 +129,19 @@ export default function Contact() {
                   },
                   {
                     icon: <MapPin size={22} />,
-                    title: "Main Address",
+                    title: "Main Branch Address",
                     lines: [
                       "House #116, Road # 15, Block # C, Banani",
+                      "Dhaka-1213, Bangladesh",
+                    ],
+                    href: undefined,
+                  },
+                  {
+                    icon: <MapPin size={22} />,
+                    title: "BIO Clinic Address",
+                    lines: [
+                      "Lavel 8, Praasad Trade Centre",
+                      "6 Kemal Ataturk Avenue, Banani",
                       "Dhaka-1213, Bangladesh",
                     ],
                     href: undefined,
@@ -139,9 +150,8 @@ export default function Contact() {
                     icon: <Clock size={22} />,
                     title: "Opening Hours",
                     lines: [
-                      "Main: 10:00 AM – 9:00 PM",
-                      "York: 10:00 AM – 2:00 PM",
-                      "Open Daily",
+                      "Main Branch: 10:00 AM – 4:00 PM",
+                      "BIO Clinic: 4:00 PM – 9:00 PM",
                     ],
                     href: undefined,
                   },

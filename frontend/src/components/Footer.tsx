@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Youtube } from 'lucide-react';
+import { Phone, MapPin, Clock, Facebook, Instagram, Youtube } from 'lucide-react';
 
 const socialLinks = [
   { label: 'Facebook', href: 'https://www.facebook.com/bcfc.org', Icon: Facebook },

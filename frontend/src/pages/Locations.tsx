@@ -6,18 +6,18 @@ import { buildTitle } from '../utils/seoHelpers';
 
 const chambers = [
   {
-    name: 'Main Chamber',
+    name: 'Dental & Maxillofacial Surgery Banani Clinic (Specialized Hospital)',
     address: 'House #116, Road # 15, Block # C, Banani, Dhaka-1213',
     phones: ['01711-780957', '01711-780958'],
-    hours: '10:00 AM – 9:00 PM (Daily)',
+    hours: '10:00 AM – 4:00 PM',
     email: 'aslam.almehdi@gmail.com',
     mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.3!2d90.4012!3d23.7945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQ3JzQwLjIiTiA5MMKwMjQnMDQuMyJF!5e0!3m2!1sen!2sbd!4v1234567890',
   },
   {
-    name: 'York Hospital Branch',
-    address: 'House #12 & 13, Road #22, Block K, Banani, Dhaka-1213',
-    phones: ['01711-780957', '01711-780958'],
-    hours: '10:00 AM – 2:00 PM (Daily)',
+    name: 'BIO Dental & Maxillofacial Surgery Clinic',
+    address: 'Lavel 8, Praasad Trade Centre, 6 Kemal Ataturk Avenue, Banani, Dhaka-1213',
+    phones: ['01711734470', '01711734478'],
+    hours: '4:00 PM – 9:00 PM',
     email: 'aslam.almehdi@gmail.com',
     mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.2!2d90.4025!3d23.7955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQ3JzQ0LjAiTiA5MMKwMjQnMDkuMCJF!5e0!3m2!1sen!2sbd!4v1234567891',
   },
@@ -67,7 +67,7 @@ export default function Locations() {
                   </div>
                   <div className="p-6 md:p-8">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-4 text-white" style={{ backgroundColor: '#2B7CC1' }}>
-                      {i === 0 ? 'Main Chamber' : 'Branch'}
+                      {i === 0 ? 'Main Branch' : 'Branch'}
                     </div>
                     <h2 className="text-xl md:text-2xl font-bold mb-5" style={{ color: '#1A3A5C' }}>{chamber.name}</h2>
                     <div className="space-y-3 mb-6">
@@ -91,7 +91,7 @@ export default function Locations() {
                 {[
                   { icon: <Bus size={24} />, title: 'By Bus', desc: 'Banani is served by multiple city bus routes. Get off at Banani or Gulshan-1 Circle and walk or take a rickshaw.' },
                   { icon: <Car size={24} />, title: 'By Car', desc: 'Ample street parking available near both chambers. Rideshare services (Uber, Pathao) work excellently in this area.' },
-                  { icon: <MapPin size={24} />, title: 'Landmarks', desc: 'The main chamber is near Banani Road 12. The York Hospital branch is identifiable by the hospital signage on Road 22.' },
+                  { icon: <MapPin size={24} />, title: 'Landmarks', desc: 'The main branch is in Block C, Banani. The BIO clinic is on Kemal Ataturk Avenue at Praasad Trade Centre.' },
                 ].map((item, i) => (
                   <div key={i} className="fade-in bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-blue-100" style={{ animationDelay: `${i * 0.08}s` }}>
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-white" style={{ backgroundColor: '#2B7CC1' }}>{item.icon}</div>
