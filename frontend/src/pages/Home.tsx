@@ -103,7 +103,7 @@ export default function Home() {
         >
           <div className="absolute inset-0 pointer-events-none">
             <img
-              src="https://images.pexels.com/photos/3845806/pexels-photo-3845806.jpeg"
+              src="/Home.jpeg"
               alt=""
               className="w-full h-full object-cover"
               style={{ opacity: 0.1 }}
