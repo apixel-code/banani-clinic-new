@@ -1,6 +1,12 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Clock, Facebook, Instagram, Youtube } from 'lucide-react';
 
+const socialLinks = [
+  { label: 'Facebook', href: 'https://www.facebook.com/bcfc.org', Icon: Facebook },
+  { label: 'Instagram', href: '#', Icon: Instagram },
+  { label: 'YouTube', href: '#', Icon: Youtube },
+];
+
 export default function Footer() {
   return (
     <footer style={{ backgroundColor: '#1A3A5C', color: 'white' }}>
@@ -18,8 +24,8 @@ export default function Footer() {
             </Link>
             <p className="text-sm leading-relaxed mb-5" style={{ color: '#bfdbfe' }}>Dhaka's most trusted oral & maxillofacial surgery clinic. International-grade care, local heart.</p>
             <div className="flex gap-3">
-              {[Facebook, Instagram, Youtube].map((Icon, i) => (
-                <a key={i} href="#" className="w-9 h-9 rounded-lg flex items-center justify-center transition-colors" style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
+              {socialLinks.map(({ label, href, Icon }) => (
+                <a key={label} href={href} target={href === '#' ? undefined : '_blank'} rel={href === '#' ? undefined : 'noopener noreferrer'} aria-label={label} className="w-9 h-9 rounded-lg flex items-center justify-center transition-colors" style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
                   onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#2B7CC1')}
                   onMouseLeave={e => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)')}
                 ><Icon size={16} /></a>
