@@ -61,9 +61,19 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
-        <div className="container-custom py-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs" style={{ color: '#93c5fd' }}>
+        <div className="container-custom py-4 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-center sm:text-left" style={{ color: '#93c5fd' }}>
           <span>© {new Date().getFullYear()} Banani Clinic Ltd. All rights reserved.</span>
-          <span>Reg. No. 871 – BMDC</span>
+          <span>
+            Developed by{' '}
+            <a
+              href="https://www.apixel.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-white hover:underline"
+            >
+              Apixel
+            </a>
+          </span>
         </div>
       </div>
     </footer>
