@@ -32,16 +32,8 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === "/";
-
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
 
   useEffect(() => {
     setIsOpen(false);
@@ -64,7 +56,7 @@ export default function Navbar() {
     };
   }, [isOpen]);
 
-  const solid = scrolled || !isHome;
+  const solid = true;
   const isActiveLink = (path: string) =>
     location.pathname === path ||
     (path === "/doctors" && location.pathname.startsWith("/doctor/"));

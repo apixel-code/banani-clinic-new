@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   Award,
+  ChevronLeft,
   ChevronRight,
   Clock,
   GraduationCap,
@@ -19,6 +20,8 @@ import { services } from "../data/services";
 import { useCounter } from "../hooks/useScrollAnimation";
 import api from "../lib/api";
 import { buildTitle, CLINIC_SCHEMA, DOCTOR_SCHEMA } from "../utils/seoHelpers";
+
+const heroSlides = ["/slider-01.jpeg", "/slider-02.jpeg", "/slider-03.jpeg"];
 
 function StatCounter({
   target,
@@ -46,6 +49,17 @@ function StatCounter({
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [posts, setPosts] = useState<any[]>([]);
+  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
+
+  const showPreviousHeroSlide = () => {
+    setActiveHeroSlide((current) =>
+      current === 0 ? heroSlides.length - 1 : current - 1,
+    );
+  };
+
+  const showNextHeroSlide = () => {
+    setActiveHeroSlide((current) => (current + 1) % heroSlides.length);
+  };
 
   useEffect(() => {
     api
@@ -54,6 +68,13 @@ export default function Home() {
         setPosts(data || []);
       })
       .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveHeroSlide((current) => (current + 1) % heroSlides.length);
+    }, 5000);
+    return () => window.clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -95,21 +116,25 @@ export default function Home() {
       <div ref={sectionRef}>
         {/* HERO */}
         <section
-          className="relative min-h-screen flex items-center justify-center overflow-hidden"
-          style={{
-            background:
-              "linear-gradient(135deg, #0F2238 0%, #1A3A5C 40%, #2B7CC1 100%)",
-          }}
+          className="relative mt-16 flex h-[560px] items-center justify-center overflow-hidden bg-gray-100 sm:h-[620px] md:mt-20 md:h-[680px] lg:h-[720px]"
+          aria-label="Clinic highlights"
         >
-          <div className="absolute inset-0 pointer-events-none">
-            <img
-              src="/Home.jpeg"
-              alt=""
-              className="home-hero-pan absolute top-0 left-1/2 h-full w-[115%] max-w-none object-cover"
-              style={{ opacity: 0.1 }}
-            />
+          <div
+            className="absolute inset-0 flex h-full transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${activeHeroSlide * 100}%)` }}
+          >
+            {heroSlides.map((slide, index) => (
+              <img
+                key={slide}
+                src={slide}
+                alt={`Banani Clinic banner ${index + 1}`}
+                className="h-full w-full flex-none object-cover"
+                draggable={false}
+              />
+            ))}
           </div>
-          <div className="container-custom relative z-10 py-28 md:py-32 text-center">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0F2238]/80 via-[#1A3A5C]/55 to-[#2B7CC1]/35" />
+          <div className="container-custom relative z-10 py-10 text-center">
             <div
               className="inline-flex items-center gap-2 border border-white/20 px-3 md:px-4 py-2 rounded-full text-xs md:text-sm font-medium mb-6 md:mb-8"
               style={{
@@ -142,7 +167,7 @@ export default function Home() {
                 1500+ Transformed Smiles
               </span>
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-10 md:mb-16 px-4">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-8 md:mb-12 px-4">
               <Link
                 to="/book"
                 className="btn-primary text-sm md:text-base px-6 md:px-8 py-3 md:py-4 shadow-xl"
@@ -179,6 +204,22 @@ export default function Home() {
               ))}
             </div>
           </div>
+          <button
+            type="button"
+            onClick={showPreviousHeroSlide}
+            className="absolute left-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/20 text-white transition-colors hover:bg-black/35 md:left-5 md:h-12 md:w-12"
+            aria-label="Previous banner"
+          >
+            <ChevronLeft size={30} strokeWidth={2.5} />
+          </button>
+          <button
+            type="button"
+            onClick={showNextHeroSlide}
+            className="absolute right-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/20 text-white transition-colors hover:bg-black/35 md:right-5 md:h-12 md:w-12"
+            aria-label="Next banner"
+          >
+            <ChevronRight size={30} strokeWidth={2.5} />
+          </button>
         </section>
 
         {/* PAIN POINTS */}
