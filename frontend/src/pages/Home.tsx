@@ -105,7 +105,7 @@ export default function Home() {
             <img
               src="/Home.jpeg"
               alt=""
-              className="w-full h-full object-cover"
+              className="home-hero-pan absolute top-0 left-1/2 h-full w-[115%] max-w-none object-cover"
               style={{ opacity: 0.1 }}
             />
           </div>

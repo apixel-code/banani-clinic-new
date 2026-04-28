@@ -147,6 +147,29 @@
   }
 }
 
+.home-hero-pan {
+  animation: heroPan 18s ease-in-out infinite alternate;
+  transform: translateX(-56%) scale(1.08);
+  transform-origin: center;
+  will-change: transform;
+}
+
+@keyframes heroPan {
+  0% {
+    transform: translateX(-56%) scale(1.08);
+  }
+  100% {
+    transform: translateX(-44%) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-pan {
+    animation: none;
+    transform: translateX(-50%) scale(1.08);
+  }
+}
+
 /* Toast */
 @keyframes slideInRight {
   from {
