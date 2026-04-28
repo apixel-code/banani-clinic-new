@@ -466,7 +466,18 @@ export default function Home() {
                 >
                   Meet Your Specialist
                 </span>
-                <h2 className="section-title mb-2">Dr. Aslam Al Mehdi</h2>
+                <h2 className="section-title mb-2">Prof. Dr. Aslam Almehdi</h2>
+                <p
+                  className="inline-flex items-center text-sm md:text-base font-semibold mb-3 px-3 py-1.5 rounded-full border"
+                  style={{
+                    color: "#FF6B35",
+                    backgroundColor: "#fff3ed",
+                    borderColor: "#ffd9c9",
+                  }}
+                >
+                  Best Dental & Maxillofacial Surgeon in Dhaka
+                </p>
+
                 <p
                   className="font-semibold mb-5 md:mb-6"
                   style={{ color: "#2B7CC1" }}
