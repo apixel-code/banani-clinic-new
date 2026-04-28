@@ -227,41 +227,54 @@ export default function Home() {
         {/* PAIN POINTS */}
         <section className="py-14 md:py-20 bg-white">
           <div className="container-custom">
-            <div className="text-center mb-10 md:mb-12">
-              <h2 className="section-title fade-in">
-                Best Dental Clinic in Banani
-              </h2>
-              <p
-                className="section-subtitle max-w-2xl mx-auto fade-in px-4 overflow-hidden"
-                style={{
-                  display: isPainPointsExpanded ? "block" : "-webkit-box",
-                  WebkitLineClamp: isPainPointsExpanded ? "unset" : 6,
-                  WebkitBoxOrient: "vertical",
-                }}
-              >
-                Dental & Maxillofacial Surgery, Banani Clinic (Specialized
-                Hospital) is always promised to provide the best oral and dental
-                treatment to the patients with all advance technology and top
-                notch equipment in Bangladesh. Dental & Maxillofacial Surgery,
-                Banani Clinic (Specialized Hospital) ensure you the best
-                hygienic environment to perform the best possible oral and
-                dental treatment. Currently in each department of this center
-                like Dental Implants, Orthodontic Treatment, Cosmetic Dentistry,
-                Oral & Maxillofacial Surgery, Root Canal, Crown, Bridges,
-                Prosthesis, Filing, Periodontist specialist doctors with degrees
-                from home and abroad and highly trained in abroad provide
-                treatment to patients in this center. We have long experience of
-                serving domestic and foreign patients.
-              </p>
-              <button
-                type="button"
-                onClick={() => setIsPainPointsExpanded((prev) => !prev)}
-                className="fade-in mt-3 font-semibold text-sm hover:opacity-80 transition-opacity"
-                style={{ color: "#2268A8" }}
-                aria-expanded={isPainPointsExpanded}
-              >
-                {isPainPointsExpanded ? "See less" : "See more"}
-              </button>
+            <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 md:gap-10 items-center mb-10 md:mb-12">
+              <div className="text-center lg:text-left">
+                <h2 className="section-title fade-in">
+                  Best Dental Clinic in Banani
+                </h2>
+                <p
+                  className="section-subtitle max-w-2xl mx-auto lg:mx-0 fade-in px-4 lg:px-0 overflow-hidden"
+                  style={{
+                    display: isPainPointsExpanded ? "block" : "-webkit-box",
+                    WebkitLineClamp: isPainPointsExpanded ? "unset" : 6,
+                    WebkitBoxOrient: "vertical",
+                  }}
+                >
+                  Dental & Maxillofacial Surgery, Banani Clinic (Specialized
+                  Hospital) is always promised to provide the best oral and
+                  dental treatment to the patients with all advance technology
+                  and top notch equipment in Bangladesh. Dental & Maxillofacial
+                  Surgery, Banani Clinic (Specialized Hospital) ensure you the
+                  best hygienic environment to perform the best possible oral
+                  and dental treatment. Currently in each department of this
+                  center like Dental Implants, Orthodontic Treatment, Cosmetic
+                  Dentistry, Oral & Maxillofacial Surgery, Root Canal, Crown,
+                  Bridges, Prosthesis, Filing, Periodontist specialist doctors
+                  with degrees from home and abroad and highly trained in abroad
+                  provide treatment to patients in this center. We have long
+                  experience of serving domestic and foreign patients.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setIsPainPointsExpanded((prev) => !prev)}
+                  className="fade-in mt-3 font-semibold text-sm hover:opacity-80 transition-opacity"
+                  style={{ color: "#2268A8" }}
+                  aria-expanded={isPainPointsExpanded}
+                >
+                  {isPainPointsExpanded ? "See less" : "See more"}
+                </button>
+              </div>
+              <div className="fade-in">
+                <div className="relative mx-auto max-w-xl overflow-hidden rounded-3xl shadow-2xl border border-blue-100 bg-white">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-[#1A3A5C]/10 via-transparent to-[#FF6B35]/10" />
+                  <img
+                    src="/clinic.jpeg"
+                    alt="Banani Clinic interior"
+                    className="h-full w-full object-cover aspect-[4/3]"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
             </div>
             <div className="grid md:grid-cols-3 gap-5 md:gap-6">
               {[
