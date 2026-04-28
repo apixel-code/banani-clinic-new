@@ -13,7 +13,7 @@ const fallbackDoctor = {
   short_bio:
     "Dhaka's leading oral and maxillofacial surgeon with international training and 15+ years of clinical experience.",
   photo_url: "https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg",
-  phone: "+8801311129952",
+  phone: "+8801711780957",
   biography: [
     "Dr. Aslam Al Mehdi is one of Bangladesh's most distinguished oral and maxillofacial surgeons. With a Ph.D. from Tokyo Medical and Dental University and an MS from Seoul National University, he brings an unparalleled depth of international training to his practice at Banani Clinic.",
     "His academic journey began in Dhaka before taking him to the Korean Peninsula for his master's degree in oral surgery, then to Tokyo for his doctorate. He has conducted postdoctoral research in Australia and holds active fellowships from the International Academy of Oral Oncology and the International College of Dentists.",

@@ -144,11 +144,11 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2 md:gap-3">
             <a
-              href="tel:+8801311129952"
+              href="tel:+8801711780957"
               className={`hidden md:flex items-center gap-1.5 text-sm font-semibold transition-colors ${solid ? "text-gray-800" : "text-white"}`}
             >
               <Phone size={14} />
-              <span className="hidden xl:inline">01311-129952</span>
+              <span className="hidden xl:inline">01711-780957</span>
             </a>
             <Link
               to="/book"
@@ -210,11 +210,11 @@ export default function Navbar() {
             )}
             <div className="pt-4 border-t border-gray-100 space-y-3 mt-4">
               <a
-                href="tel:+8801311129952"
+                href="tel:+8801711780957"
                 className="flex items-center justify-center gap-2 w-full py-4 rounded-xl border-2 font-bold text-base"
                 style={{ borderColor: "#2B7CC1", color: "#2B7CC1" }}
               >
-                <Phone size={18} /> Call 01311-129952
+                <Phone size={18} /> Call 01711-780957
               </a>
               <Link
                 to="/book"

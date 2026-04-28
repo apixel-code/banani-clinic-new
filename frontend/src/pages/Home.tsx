@@ -518,10 +518,10 @@ export default function Home() {
                 Book Free Consultation
               </Link>
               <a
-                href="tel:+8801311129952"
+                href="tel:+8801711780957"
                 className="btn-secondary text-sm md:text-base px-6 md:px-8 py-3 md:py-4"
               >
-                <Phone size={16} /> Call 01311-129952
+                <Phone size={16} /> Call 01711-780957
               </a>
             </div>
           </div>

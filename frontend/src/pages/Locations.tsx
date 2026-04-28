@@ -8,7 +8,7 @@ const chambers = [
   {
     name: 'Main Chamber',
     address: 'House #78/E, Road #12, Banani, Dhaka-1213',
-    phones: ['01311-129952', '01311-129953'],
+    phones: ['01711-780957', '01711-780958'],
     hours: '10:00 AM – 9:00 PM (Daily)',
     email: 'aslam.almehdi@gmail.com',
     mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.3!2d90.4012!3d23.7945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQ3JzQwLjIiTiA5MMKwMjQnMDQuMyJF!5e0!3m2!1sen!2sbd!4v1234567890',

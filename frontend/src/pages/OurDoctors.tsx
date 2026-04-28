@@ -14,7 +14,7 @@ const fallbackDoctors = [
     short_bio:
       "Internationally trained oral and maxillofacial surgeon with 15+ years of clinical experience.",
     photo_url: "https://images.pexels.com/photos/5452201/pexels-photo-5452201.jpeg",
-    phone: "+8801311129952",
+    phone: "+8801711780957",
     expertise: ["Dental Implantology", "Periodontal Surgery", "Oral & Maxillofacial Surgery"],
   },
 ];

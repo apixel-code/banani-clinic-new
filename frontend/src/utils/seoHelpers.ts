@@ -10,7 +10,7 @@ export const CLINIC_SCHEMA = {
   '@type': ['MedicalBusiness', 'LocalBusiness'],
   name: 'Dental & Maxillofacial Surgery | Banani Clinic (Specialized Hospital)',
   url: SITE_URL,
-  telephone: '+8801311129952',
+  telephone: '+8801711780957',
   email: 'aslam.almehdi@gmail.com',
   address: {
     '@type': 'PostalAddress',

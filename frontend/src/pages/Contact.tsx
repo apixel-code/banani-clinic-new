@@ -111,8 +111,8 @@ export default function Contact() {
                   {
                     icon: <Phone size={22} />,
                     title: "Main Chamber",
-                    lines: ["01311-129952", "01311-129953"],
-                    href: "tel:+8801311129952",
+                    lines: ["01711-780957", "01711-780958"],
+                    href: "tel:+8801711780957",
                   },
                   {
                     icon: <Phone size={22} />,
@@ -167,7 +167,7 @@ export default function Contact() {
                         item.href ? (
                           <a
                             key={line}
-                            href={item.href}
+                            href={item.href.startsWith("tel:") ? `tel:+880${line.replace(/-/g, "").slice(1)}` : item.href}
                             className="block text-sm text-gray-600 hover:text-blue-600 transition-colors"
                           >
                             {line}
@@ -182,7 +182,7 @@ export default function Contact() {
                   </div>
                 ))}
                 <a
-                  href="https://wa.me/8801311129952?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20treatment."
+                  href="https://wa.me/8801711780957?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20treatment."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-bold text-white shadow-md transition-all hover:opacity-90"

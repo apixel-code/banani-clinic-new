@@ -111,8 +111,8 @@ export default function ServiceDetail() {
                     <Link to="/book" className="btn-primary w-full justify-center mb-3">
                       <Calendar size={16} /> Book Appointment
                     </Link>
-                    <a href="tel:+8801311129952" className="btn-outline w-full justify-center">
-                      <Phone size={16} /> 01311-129952
+                    <a href="tel:+8801711780957" className="btn-outline w-full justify-center">
+                      <Phone size={16} /> 01711-780957
                     </a>
                   </div>
 
