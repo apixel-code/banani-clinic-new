@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { Star } from 'lucide-react';
 
 const testimonials = [
   { name: 'Rafiqul Islam', treatment: 'Dental Implant', rating: 5, text: 'Dr. Aslam Al Mehdi is very professional and skilled. The treatment was completely painless. I was terrified of dentists before, but now I smile without hesitation. Highly recommend this clinic.', location: 'Gulshan, Dhaka' },
@@ -9,44 +8,65 @@ const testimonials = [
 ];
 
 export default function TestimonialSlider() {
-  const [current, setCurrent] = useState(0);
-  const [animating, setAnimating] = useState(false);
-
-  const go = (dir: number) => {
-    if (animating) return;
-    setAnimating(true);
-    setTimeout(() => { setCurrent((c) => (c + dir + testimonials.length) % testimonials.length); setAnimating(false); }, 200);
-  };
-
-  useEffect(() => { const t = setInterval(() => go(1), 5000); return () => clearInterval(t); }, []);
+  const scrollingTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <div className="relative">
-      <div className={`transition-opacity duration-200 ${animating ? 'opacity-0' : 'opacity-100'}`}>
-        <div className="bg-white rounded-2xl shadow-xl p-6 md:p-10 max-w-3xl mx-auto">
-          <div className="flex gap-1 mb-4">
-            {Array.from({ length: testimonials[current].rating }).map((_, i) => <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />)}
-          </div>
-          <blockquote className="text-gray-700 text-base md:text-lg leading-relaxed mb-6 italic">"{testimonials[current].text}"</blockquote>
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-full flex items-center justify-center font-bold text-lg flex-shrink-0" style={{ backgroundColor: '#EBF4FF', color: '#2B7CC1' }}>
-              {testimonials[current].name[0]}
+    <div className="relative overflow-hidden">
+      <style>{`
+        @keyframes reviewsMarquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .reviews-track {
+          animation: reviewsMarquee 32s linear infinite;
+        }
+        .reviews-track:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#EBF4FF] to-transparent md:w-28" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#EBF4FF] to-transparent md:w-28" />
+
+      <div className="reviews-track flex w-max gap-4 py-2 md:gap-5">
+        {scrollingTestimonials.map((testimonial, index) => (
+          <article
+            key={`${testimonial.name}-${index}`}
+            className="w-[300px] rounded-2xl border border-blue-100 bg-white p-5 shadow-sm md:w-[380px] md:p-6"
+          >
+            <div className="mb-4 flex gap-1">
+              {Array.from({ length: testimonial.rating }).map((_, i) => (
+                <Star
+                  key={i}
+                  size={17}
+                  className="fill-yellow-400 text-yellow-400"
+                />
+              ))}
             </div>
-            <div>
-              <div className="font-bold text-sm md:text-base" style={{ color: '#1A3A5C' }}>{testimonials[current].name}</div>
-              <div className="text-xs md:text-sm text-gray-400">{testimonials[current].treatment} · {testimonials[current].location}</div>
+            <blockquote className="mb-5 line-clamp-5 text-sm leading-relaxed text-gray-600 md:text-base">
+              "{testimonial.text}"
+            </blockquote>
+            <div className="flex items-center gap-3 border-t border-gray-100 pt-4">
+              <div
+                className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full text-lg font-bold"
+                style={{ backgroundColor: '#EBF4FF', color: '#2B7CC1' }}
+              >
+                {testimonial.name[0]}
+              </div>
+              <div>
+                <div
+                  className="text-sm font-bold md:text-base"
+                  style={{ color: '#1A3A5C' }}
+                >
+                  {testimonial.name}
+                </div>
+                <div className="text-xs text-gray-400 md:text-sm">
+                  {testimonial.treatment} · {testimonial.location}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div className="flex items-center justify-center gap-4 mt-6 md:mt-8">
-        <button onClick={() => go(-1)} className="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center hover:shadow-lg transition-all" style={{ color: '#1A3A5C' }}><ChevronLeft size={20} /></button>
-        <div className="flex gap-2">
-          {testimonials.map((_, i) => (
-            <button key={i} onClick={() => setCurrent(i)} className="rounded-full transition-all duration-300" style={{ width: i === current ? 24 : 10, height: 10, backgroundColor: i === current ? '#2B7CC1' : '#ADD3FF' }} />
-          ))}
-        </div>
-        <button onClick={() => go(1)} className="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center hover:shadow-lg transition-all" style={{ color: '#1A3A5C' }}><ChevronRight size={20} /></button>
+          </article>
+        ))}
       </div>
     </div>
   );
