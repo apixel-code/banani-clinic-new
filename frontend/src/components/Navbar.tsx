@@ -79,13 +79,13 @@ export default function Navbar() {
             </div>
             <div className="block min-w-0 max-w-[190px] sm:max-w-[240px] lg:max-w-[260px]">
               <div
-                className={`font-bold text-[10px] sm:text-xs md:text-sm leading-tight transition-colors ${solid ? "text-navy-DEFAULT" : "text-white"}`}
+                className={`font-bold text-xs sm:text-sm md:text-sm leading-tight transition-colors ${solid ? "text-navy-DEFAULT" : "text-white"}`}
                 style={{ color: solid ? "#1A3A5C" : "white" }}
               >
                 Dental & Maxillofacial Surgery
               </div>
               <div
-                className="text-[9px] sm:text-[10px] md:text-xs leading-tight"
+                className="text-[10px] sm:text-xs md:text-xs leading-tight"
                 style={{ color: solid ? "#8A9BB0" : "#bfdbfe" }}
               >
                 Banani Clinic (Specialized Hospital)
