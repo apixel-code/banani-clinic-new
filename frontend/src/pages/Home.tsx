@@ -12,7 +12,6 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import BeforeAfterSlider from "../components/BeforeAfterSlider";
 import BlogCard from "../components/BlogCard";
 import ServiceCard from "../components/ServiceCard";
 import TestimonialSlider from "../components/TestimonialSlider";
@@ -22,6 +21,35 @@ import api from "../lib/api";
 import { buildTitle, CLINIC_SCHEMA, DOCTOR_SCHEMA } from "../utils/seoHelpers";
 
 const heroSlides = ["/slider-01.jpeg", "/slider-02.jpeg", "/slider-03.jpeg"];
+
+const consultationDoctors = [
+  {
+    image: "/Consultant01.jpeg",
+    name: "Prof. Dr. Aslam Almehdi",
+    lines: [
+      "Ph.D. (Periodontal Plastic Surgery) Tokyo, Japan",
+      "M.S. (Oral & Maxillofacial Surgery & Medicine) Korea",
+      "B.D.S. (Dhaka Dental College & Hospital) Dhaka",
+      "FIAOO (UK), FICD (USA), Postdoc (Australia)",
+      "Delta Medical College & Hospital Dental Unit",
+      "Periodontal Plastic & Maxillofacial Surgeon",
+      "Bangladesh Medical & Dental Council Reg.No.871",
+    ],
+  },
+  {
+    image: "/Consultant02.jpeg",
+    name: "Dr. Sanjir Howlader",
+    lines: [
+      "Dental & Maxillofacial Surgeon",
+      "BDS (DU), PGT (OMS) Dhaka Dental College, BIRDEM Hospital",
+      "Fellow of the International Congress of Oral Implantologists (USA)",
+      "C.P.R (DMCH) Advanced Course in Esthetic Dentistry",
+      "And Endodontics (Manual & Rotary)",
+      "Advanced Course: Orthodontics International",
+      "Fellowship on Micro Endodontics (ODONTOS)",
+    ],
+  },
+];
 
 function StatCounter({
   target,
@@ -381,33 +409,63 @@ export default function Home() {
           </div>
         </section>
 
-        {/* BEFORE/AFTER */}
+        {/* CONSULTATION */}
         <section className="py-14 md:py-20 bg-white">
           <div className="container-custom">
             <div className="text-center mb-10 md:mb-12">
               <span
                 className="badge mb-3"
-                style={{ backgroundColor: "#fff0eb", color: "#FF6B35" }}
+                style={{ backgroundColor: "#D6E9FF", color: "#2268A8" }}
               >
-                Transformations
+                Our Consultation
               </span>
               <h2 className="section-title fade-in">
-                Real Patients. Real Results.
+                Meet Our Consultants
               </h2>
-              <p className="section-subtitle max-w-xl mx-auto fade-in px-4">
-                Drag the slider to see the life-changing results our patients
-                experience.
+              <p className="section-subtitle max-w-2xl mx-auto fade-in px-4">
+                Experienced consultants providing specialized dental and
+                maxillofacial care with international training.
               </p>
             </div>
-            <div className="max-w-3xl mx-auto fade-in">
-              <BeforeAfterSlider
-                before="https://images.pexels.com/photos/3845623/pexels-photo-3845623.jpeg"
-                after="https://images.pexels.com/photos/3762468/pexels-photo-3762468.jpeg"
-              />
+
+            <div className="grid gap-5 md:grid-cols-2 md:gap-6">
+              {consultationDoctors.map((doctor) => (
+                <div
+                  key={doctor.name}
+                  className="fade-in rounded-2xl border border-blue-100 bg-white p-5 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:p-6"
+                >
+                  <div className="mx-auto mb-5 aspect-square w-full max-w-[260px] overflow-hidden rounded-2xl bg-blue-50 ring-1 ring-blue-100 sm:max-w-[280px] lg:max-w-[300px]">
+                    <img
+                      src={doctor.image}
+                      alt={doctor.name}
+                      className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                  <h3
+                    className="mb-2 text-xl font-bold md:text-2xl"
+                    style={{ color: "#1A3A5C" }}
+                  >
+                    {doctor.name}
+                  </h3>
+                  <div
+                    className="mx-auto mb-5 h-1 w-14 rounded-full"
+                    style={{ backgroundColor: "#FF6B35" }}
+                  />
+                  <div className="space-y-2.5">
+                    {doctor.lines.map((line) => (
+                      <p
+                        key={line}
+                        className="text-sm font-medium leading-relaxed md:text-base"
+                        style={{ color: "#5f6f82" }}
+                      >
+                        {line}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
-            <p className="text-center text-gray-400 text-sm mt-3">
-              Drag slider to compare
-            </p>
           </div>
         </section>
 
