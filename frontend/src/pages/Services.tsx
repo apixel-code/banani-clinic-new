@@ -25,8 +25,16 @@ export default function Services() {
         <meta name="description" content="Explore all dental and maxillofacial services at Banani Clinic: implants, root canals, cosmetic dentistry, periodontal surgery, oral cancer screening and more." />
       </Helmet>
       <div ref={ref}>
-        <section className="relative py-28 md:py-36" style={{ background: 'linear-gradient(135deg, #1A3A5C 0%, #2B7CC1 100%)' }}>
-          <div className="container-custom text-center">
+        <section className="relative overflow-hidden py-28 md:py-36" style={{ background: 'linear-gradient(135deg, #1A3A5C 0%, #2B7CC1 100%)' }}>
+          <img
+            src="/clinic.jpeg"
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0F2238]/90 via-[#1A3A5C]/75 to-[#2B7CC1]/55" />
+          <div className="absolute inset-0 bg-[#0F2238]/20" />
+          <div className="container-custom relative z-10 text-center">
             <span className="badge mb-4 border border-white/30" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#bfdbfe' }}>All Services</span>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6 fade-in">Complete Oral Care Under One Roof</h1>
             <p className="text-lg md:text-xl max-w-2xl mx-auto fade-in" style={{ color: '#bfdbfe' }}>From a first check-up to complex maxillofacial reconstruction — we have the expertise, equipment, and compassion to handle every case.</p>

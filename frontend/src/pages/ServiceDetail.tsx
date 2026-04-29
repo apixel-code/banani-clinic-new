@@ -45,8 +45,18 @@ export default function ServiceDetail() {
 
       <div ref={ref}>
         {/* HERO */}
-        <section className="relative py-28 md:py-36" style={{ background: 'linear-gradient(135deg, #1A3A5C 0%, #2B7CC1 100%)' }}>
-          <div className="container-custom">
+        <section className="relative overflow-hidden py-28 md:py-36" style={{ background: 'linear-gradient(135deg, #1A3A5C 0%, #2B7CC1 100%)' }}>
+          {service.image && (
+            <img
+              src={service.image}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
+              aria-hidden="true"
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0F2238]/90 via-[#1A3A5C]/75 to-[#2B7CC1]/55" />
+          <div className="absolute inset-0 bg-[#0F2238]/20" />
+          <div className="container-custom relative z-10">
             <div className="flex items-center gap-2 text-sm mb-6" style={{ color: '#93c5fd' }}>
               <Link to="/services" className="hover:text-white transition-colors">Services</Link>
               <ChevronRight size={14} />
