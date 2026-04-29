@@ -18,7 +18,7 @@ import TestimonialSlider from "../components/TestimonialSlider";
 import { services } from "../data/services";
 import { useCounter } from "../hooks/useScrollAnimation";
 import api from "../lib/api";
-import { buildTitle, CLINIC_SCHEMA, DOCTOR_SCHEMA } from "../utils/seoHelpers";
+import { CLINIC_SCHEMA, DOCTOR_SCHEMA } from "../utils/seoHelpers";
 
 const heroSlides = ["/slider-01.jpeg", "/slider-02.jpeg", "/slider-03.jpeg"];
 
@@ -128,7 +128,7 @@ export default function Home() {
     <>
       <Helmet>
         <title>
-          {buildTitle("Dhaka's Best Dental & Maxillofacial Surgery Clinic")}
+          Best Dentists & Maxillofacial Surgeons - সেরা দাঁতের ডাক্তার
         </title>
         <meta
           name="description"
@@ -192,9 +192,9 @@ export default function Home() {
               className="text-sm md:text-lg mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed px-4"
               style={{ color: "#bfdbfe" }}
             >
-              Prof. Dr. Aslam Almehdi{" "}
+              Dhaka's Most Trusted Oral & Maxillofacial Surgery Clinic{" "}
               <span className="text-white font-semibold">
-                --Best Dental & Maxillofacial Surgeon
+                — 1500+ Transformed Smiles
               </span>
             </p>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-8 md:mb-12 px-4">
