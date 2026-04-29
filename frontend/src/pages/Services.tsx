@@ -36,7 +36,7 @@ export default function Services() {
         <section className="py-14 md:py-20" style={{ backgroundColor: '#EBF4FF' }}>
           <div className="container-custom">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {services.map((s, i) => <ServiceCard key={s.id} title={s.title} slug={s.slug} icon={s.icon} shortDesc={s.shortDesc} index={i} />)}
+              {services.map((s, i) => <ServiceCard key={s.id} title={s.title} slug={s.slug} image={s.image} shortDesc={s.shortDesc} index={i} />)}
             </div>
           </div>
         </section>

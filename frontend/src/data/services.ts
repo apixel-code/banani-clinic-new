@@ -3,6 +3,7 @@ export interface Service {
   title: string;
   slug: string;
   icon: string;
+  image?: string;
   shortDesc: string;
   fullDesc: string;
   whatIsIt: string;
@@ -17,6 +18,7 @@ export const services: Service[] = [
     title: 'Dental Implants',
     slug: 'dental-implants',
     icon: 'tooth',
+    image: '/service_icon/dental_implants.jpeg',
     shortDesc: 'Permanent tooth replacement that looks, feels, and functions like natural teeth.',
     fullDesc: 'Dental implants are the gold standard for replacing missing teeth. A titanium post is surgically placed into the jawbone, providing a permanent anchor for a lifelike crown.',
     whatIsIt: 'A dental implant is a titanium screw surgically inserted into the jawbone to serve as an artificial tooth root. Once healed, a custom porcelain crown is attached, creating a replacement tooth indistinguishable from natural teeth.',
@@ -41,6 +43,7 @@ export const services: Service[] = [
     title: 'Root Canal Treatment',
     slug: 'root-canal-treatment',
     icon: 'activity',
+    image: '/service_icon/Root Canal Treatment.jpeg',
     shortDesc: 'Save your natural tooth and eliminate pain with our modern, virtually painless protocol.',
     fullDesc: 'Root canal treatment removes infected pulp tissue, eliminates pain, and saves your natural tooth. Our advanced technique and anesthesia protocol make the procedure comfortable and efficient.',
     whatIsIt: 'Root canal therapy (endodontic treatment) cleans and seals the inner chamber of a tooth that has been infected or inflamed due to deep decay, cracks, or trauma.',
@@ -65,6 +68,7 @@ export const services: Service[] = [
     title: 'Cosmetic Dentistry',
     slug: 'cosmetic-dentistry',
     icon: 'sparkles',
+    image: '/service_icon/Cosmetic Dentistry.jpeg',
     shortDesc: 'Teeth whitening, veneers, and alignment solutions for the smile you deserve.',
     fullDesc: 'Transform your smile with our comprehensive cosmetic dentistry services. From professional whitening to porcelain veneers and Invisalign-style alignment, we craft smiles that boost confidence.',
     whatIsIt: 'Cosmetic dentistry encompasses procedures that improve the appearance of your teeth, gums, and overall smile — including whitening, veneers, bonding, and clear aligners.',
@@ -89,6 +93,7 @@ export const services: Service[] = [
     title: 'Periodontal Plastic Surgery',
     slug: 'periodontal-plastic-surgery',
     icon: 'scissors',
+    image: '/service_icon/Periodontal Plastic Surgery.jpeg',
     shortDesc: 'Treat gum disease and reshape your gum line for healthier, more beautiful teeth.',
     fullDesc: 'Dr. Aslam Al Mehdi holds a Ph.D. in Periodontal Plastic Surgery from Tokyo. Our periodontal treatments address gum disease, gum recession, and aesthetic gum reshaping at the highest level.',
     whatIsIt: 'Periodontal plastic surgery includes procedures to treat gum disease, graft receded gums, reshape uneven gum lines (crown lengthening), and regenerate lost bone and tissue around teeth.',
@@ -113,6 +118,7 @@ export const services: Service[] = [
     title: 'Oral & Maxillofacial Surgery',
     slug: 'oral-maxillofacial-surgery',
     icon: 'shield',
+    image: '/service_icon/Oral and maxillofacial Surgery.jpeg',
     shortDesc: 'Complex surgical procedures of the mouth, jaw, and face by a Korea-trained specialist.',
     fullDesc: 'Our maxillofacial surgery department, led by Dr. Aslam Al Mehdi (MS, Korea), handles complex cases including wisdom tooth removal, jaw surgery, facial trauma, and tumor removal.',
     whatIsIt: 'Oral and maxillofacial surgery addresses diseases, injuries, and defects of the mouth, teeth, jaws, and face. It bridges dentistry and medicine for complex cases.',
@@ -136,6 +142,7 @@ export const services: Service[] = [
     title: 'Cleft Lip & Palate Surgery',
     slug: 'cleft-lip-palate-surgery',
     icon: 'heart',
+    image: '/service_icon/Cleft Lip & Palate Surgery.jpeg',
     shortDesc: 'Life-changing reconstructive surgery for cleft lip and palate conditions.',
     fullDesc: 'We provide expert surgical correction of cleft lip and palate, improving speech, appearance, and quality of life for patients of all ages with compassion and precision.',
     whatIsIt: 'Cleft lip and palate are birth defects where the lip or the roof of the mouth does not fully close during development. Surgical repair restores normal form and function.',
@@ -159,6 +166,7 @@ export const services: Service[] = [
     title: 'TMJ Disorder Treatment',
     slug: 'tmj-disorder-treatment',
     icon: 'zap',
+    image: '/service_icon/Temporomandibular joint Treatment.jpeg',
     shortDesc: 'Relieve jaw pain, clicking, and headaches caused by temporomandibular joint disorders.',
     fullDesc: 'TMJ disorders cause chronic jaw pain, clicking sounds, headaches, and limited mouth opening. Our targeted treatment protocols provide lasting relief without surgery in most cases.',
     whatIsIt: 'Temporomandibular joint (TMJ) disorders affect the joint connecting your jaw to your skull. They cause pain, popping sounds, difficulty chewing, and sometimes lock-jaw.',
@@ -182,6 +190,7 @@ export const services: Service[] = [
     title: 'Oral Cancer Screening',
     slug: 'oral-cancer-screening',
     icon: 'search',
+    image: '/service_icon/Oral Cancer Screening.jpeg',
     shortDesc: 'Early detection saves lives. Comprehensive oral cancer screening for all patients.',
     fullDesc: 'Oral cancer detected early has a 90%+ survival rate. We conduct thorough visual and tactile screenings during routine visits, with advanced screening tools for high-risk patients.',
     whatIsIt: 'Oral cancer screening is a systematic examination of the mouth, lips, tongue, throat, and surrounding tissues to detect early signs of cancer or precancerous conditions.',
@@ -205,6 +214,7 @@ export const services: Service[] = [
     title: 'Dental X-Rays',
     slug: 'dental-xrays',
     icon: 'monitor',
+    image: '/service_icon/Dental X-ray.jpeg',
     shortDesc: 'Digital X-rays with 90% less radiation for precise diagnosis and treatment planning.',
     fullDesc: 'Our clinic uses state-of-the-art digital radiography — including intraoral, panoramic, and 3D CBCT imaging — for accurate diagnosis with minimal radiation exposure.',
     whatIsIt: 'Dental X-rays use radiation to create images of teeth, bone, and surrounding structures not visible during clinical examination. Digital X-rays offer superior image quality with 90% less radiation than traditional film.',
@@ -228,6 +238,7 @@ export const services: Service[] = [
     title: 'Orofacial Pain Management',
     slug: 'orofacial-pain-management',
     icon: 'activity',
+    image: '/service_icon/Orofacial Pain menagement.jpeg',
     shortDesc: 'Specialized diagnosis and treatment for chronic facial pain, neuralgia, and complex pain syndromes.',
     fullDesc: 'Orofacial pain is one of the most misunderstood conditions in medicine. Our specialized team diagnoses and treats trigeminal neuralgia, burning mouth syndrome, and chronic facial pain.',
     whatIsIt: 'Orofacial pain management addresses chronic pain affecting the face, mouth, jaws, and head — including conditions like trigeminal neuralgia, burning mouth syndrome, myofascial pain, and headache disorders.',

@@ -367,7 +367,7 @@ export default function Home() {
                   key={s.id}
                   title={s.title}
                   slug={s.slug}
-                  icon={s.icon}
+                  image={s.image}
                   shortDesc={s.shortDesc}
                   index={i}
                 />
