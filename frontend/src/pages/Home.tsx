@@ -192,9 +192,9 @@ export default function Home() {
               className="text-sm md:text-lg mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed px-4"
               style={{ color: "#bfdbfe" }}
             >
-              Dhaka's Most Trusted Oral & Maxillofacial Surgery Clinic —{" "}
+              Prof. Dr. Aslam Almehdi{" "}
               <span className="text-white font-semibold">
-                1500+ Transformed Smiles
+                --Best Dental & Maxillofacial Surgeon
               </span>
             </p>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-8 md:mb-12 px-4">
@@ -374,7 +374,7 @@ export default function Home() {
           style={{ backgroundColor: "#EBF4FF" }}
         >
           <div className="container-custom">
-            <div className="text-center mb-10 md:mb-12">
+            <div className="text-center mb-8 md:mb-9">
               <span
                 className="badge mb-3"
                 style={{ backgroundColor: "#D6E9FF", color: "#2268A8" }}
@@ -419,9 +419,7 @@ export default function Home() {
               >
                 Our Consultation
               </span>
-              <h2 className="section-title fade-in">
-                Meet Our Consultants
-              </h2>
+              <h2 className="section-title fade-in">Meet Our Consultants</h2>
               <p className="section-subtitle max-w-2xl mx-auto fade-in px-4">
                 Experienced consultants providing specialized dental and
                 maxillofacial care with international training.
@@ -432,9 +430,9 @@ export default function Home() {
               {consultationDoctors.map((doctor) => (
                 <div
                   key={doctor.name}
-                  className="fade-in rounded-2xl border border-blue-100 bg-white p-5 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:p-6"
+                  className="fade-in rounded-2xl border border-blue-100 bg-white p-4 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:p-5"
                 >
-                  <div className="mx-auto mb-5 aspect-square w-full max-w-[260px] overflow-hidden rounded-2xl bg-blue-50 ring-1 ring-blue-100 sm:max-w-[280px] lg:max-w-[300px]">
+                  <div className="mx-auto mb-4 aspect-square w-full max-w-[300px] overflow-hidden rounded-2xl bg-blue-50 ring-1 ring-blue-100 sm:max-w-[320px] lg:max-w-[340px]">
                     <img
                       src={doctor.image}
                       alt={doctor.name}
@@ -449,10 +447,10 @@ export default function Home() {
                     {doctor.name}
                   </h3>
                   <div
-                    className="mx-auto mb-5 h-1 w-14 rounded-full"
+                    className="mx-auto mb-4 h-1 w-14 rounded-full"
                     style={{ backgroundColor: "#FF6B35" }}
                   />
-                  <div className="space-y-2.5">
+                  <div className="space-y-2">
                     {doctor.lines.map((line) => (
                       <p
                         key={line}
