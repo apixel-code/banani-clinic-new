@@ -47,7 +47,20 @@ app.use('/api/contacts', contactsRouter);
 app.use('/api/doctors', doctorsRouter);
 app.use('/api/admin', adminRouter);
 
-app.get('/', (req, res) => res.send('Banani Clinic Backend'));
+app.get("/api", (req, res) => res.send("Banani Clinic Backend Running"));
+
+
+app.get("/api/health", (req, res) => {
+  res.status(200).json({
+    status: "healthy",
+    uptime: process.uptime(),
+    database:
+      mongoose.connection.readyState === 1 ? "connected" : "disconnected",
+    timestamp: new Date().toISOString(),
+  });
+});
+
+
 
 function startServer(port, retriesLeft = 5) {
   const server = app.listen(port, () => {
