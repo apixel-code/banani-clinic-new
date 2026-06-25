@@ -20,7 +20,12 @@ import { useCounter } from "../hooks/useScrollAnimation";
 import api from "../lib/api";
 import { CLINIC_SCHEMA, DOCTOR_SCHEMA } from "../utils/seoHelpers";
 
-const heroSlides = ["/slider-01.jpeg", "/slider-02.jpeg", "/slider-03.jpeg"];
+const heroSlides = [
+  "/newBanner.jpeg",
+  "/slider-01.jpeg",
+  "/slider-02.jpeg",
+  "/slider-03.jpeg",
+];
 
 const consultationDoctors = [
   {
