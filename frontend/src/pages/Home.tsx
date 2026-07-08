@@ -20,11 +20,39 @@ import { useCounter } from "../hooks/useScrollAnimation";
 import api from "../lib/api";
 import { CLINIC_SCHEMA, DOCTOR_SCHEMA } from "../utils/seoHelpers";
 
-const heroSlides = [
-  "/newBanner.jpeg",
-  "/slider-01.jpeg",
-  "/slider-02.jpeg",
-  "/slider-03.jpeg",
+type HeroSlide = {
+  src: string;
+  alt: string;
+  /**
+   * true  = text/branding is already baked into the image → hide the HTML
+   *         hero overlay so it never covers the designed artwork.
+   * false = clean background photo → render the HTML hero overlay on top.
+   * Flip a single value here to change a slide's behavior — no other edits.
+   */
+  hasTextOnImage: boolean;
+};
+
+const heroSlides: HeroSlide[] = [
+  {
+    src: "/newBanner.jpeg",
+    alt: "Prof. Dr. Aslam Almehdi — PhD (Tokyo), MS, FIAOO (UK), FICD (USA)",
+    hasTextOnImage: true,
+  },
+  {
+    src: "/slider-01.jpeg",
+    alt: "Banani Clinic modern dental treatment room",
+    hasTextOnImage: false,
+  },
+  {
+    src: "/slider-02.jpeg",
+    alt: "Banani Clinic dental equipment and technology",
+    hasTextOnImage: false,
+  },
+  {
+    src: "/slider-03.jpeg",
+    alt: "Banani Clinic specialist at a dental exhibition",
+    hasTextOnImage: false,
+  },
 ];
 
 const consultationDoctors = [
@@ -84,6 +112,9 @@ export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
   const [isPainPointsExpanded, setIsPainPointsExpanded] = useState(false);
+
+  const activeSlide = heroSlides[activeHeroSlide];
+  const showOverlayText = !activeSlide.hasTextOnImage;
 
   const showPreviousHeroSlide = () => {
     setActiveHeroSlide((current) =>
@@ -157,18 +188,27 @@ export default function Home() {
             className="absolute inset-0 flex h-full transition-transform duration-700 ease-in-out"
             style={{ transform: `translateX(-${activeHeroSlide * 100}%)` }}
           >
-            {heroSlides.map((slide, index) => (
+            {heroSlides.map((slide) => (
               <img
-                key={slide}
-                src={slide}
-                alt={`Banani Clinic banner ${index + 1}`}
+                key={slide.src}
+                src={slide.src}
+                alt={slide.alt}
                 className="h-full w-full flex-none object-cover"
                 draggable={false}
               />
             ))}
           </div>
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0F2238]/55 via-[#1A3A5C]/30 to-[#2B7CC1]/15" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white/0 via-white/5 to-white/18" />
+          {/* Scrim: only darken clean images. Baked-text images keep their
+              original designed look so the printed text stays crisp. */}
+          {showOverlayText && (
+            <>
+              <div className="absolute inset-0 bg-gradient-to-br from-[#0F2238]/55 via-[#1A3A5C]/30 to-[#2B7CC1]/15" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
+            </>
+          )}
+          {/* HTML hero text: only on clean images. Hidden entirely when the
+              active slide already has text baked into the artwork. */}
+          {showOverlayText && (
           <div className="container-custom relative z-10 py-10 text-center">
             <div
               className="inline-flex items-center gap-2 border border-white/20 px-3 md:px-4 py-2 rounded-full text-xs md:text-sm font-medium mb-6 md:mb-8"
@@ -239,6 +279,21 @@ export default function Home() {
               ))}
             </div>
           </div>
+          )}
+          {/* Baked-text slides hide the full overlay (which carries its own
+              CTA), so surface a single booking CTA anchored to a safe bottom
+              zone. This keeps a conversion path on every slide without
+              covering the printed artwork. */}
+          {!showOverlayText && (
+            <div className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 px-4">
+              <Link
+                to="/book"
+                className="btn-primary text-sm md:text-base px-6 md:px-8 py-3 md:py-4 shadow-xl"
+              >
+                Book Appointment Now
+              </Link>
+            </div>
+          )}
           <button
             type="button"
             onClick={showPreviousHeroSlide}
