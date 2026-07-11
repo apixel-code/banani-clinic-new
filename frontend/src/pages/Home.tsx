@@ -181,7 +181,7 @@ export default function Home() {
       <div ref={sectionRef}>
         {/* HERO */}
         <section
-          className="relative mt-16 flex h-[560px] items-center justify-center overflow-hidden bg-gray-100 sm:h-[620px] md:mt-20 md:h-[680px] lg:h-[720px]"
+          className="relative mt-16 flex min-h-[560px] items-center justify-center overflow-hidden bg-gray-100 sm:min-h-[620px] md:mt-20 md:min-h-[680px] lg:min-h-[720px]"
           aria-label="Clinic highlights"
         >
           <div

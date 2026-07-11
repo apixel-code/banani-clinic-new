@@ -124,7 +124,7 @@ export default function DoctorProfile() {
             <img src={doctor.photo_url} alt="" className="w-full h-full object-cover" style={{ opacity: 0.1 }} />
           </div>
           <div className="container-custom relative z-10">
-            <div className="grid lg:grid-cols-2 gap-10 items-center">
+            <div className="grid md:grid-cols-2 gap-10 items-center">
               <div className="fade-in">
                 <span
                   className="badge mb-4 border border-white/30"
@@ -158,8 +158,8 @@ export default function DoctorProfile() {
                   )}
                 </div>
               </div>
-              <div className="fade-in hidden lg:block">
-                <div className="aspect-[3/4] max-w-xs mx-auto rounded-3xl overflow-hidden shadow-2xl">
+              <div className="fade-in order-first md:order-none">
+                <div className="aspect-[3/4] max-w-[220px] sm:max-w-xs mx-auto rounded-3xl overflow-hidden shadow-2xl">
                   <img src={doctor.photo_url} alt={doctor.name} className="w-full h-full object-cover" />
                 </div>
               </div>

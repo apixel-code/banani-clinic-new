@@ -160,7 +160,7 @@ export default function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="lg:hidden fixed inset-0 top-16 bg-white z-40 overflow-y-auto">
+        <div className="lg:hidden fixed inset-0 top-16 md:top-20 bg-white z-40 overflow-y-auto">
           <nav className="container-custom py-4 space-y-1 pb-24">
             {navLinks.map((link) =>
               link.children ? (

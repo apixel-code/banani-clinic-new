@@ -199,11 +199,11 @@ export default function Gallery() {
           style={{ backgroundColor: "rgba(0,0,0,0.92)" }}
           onClick={() => setLightbox(null)}
         >
-          <button className="absolute top-4 right-4 text-white w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors z-10">
+          <button className="absolute top-4 right-4 text-white w-10 h-10 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 transition-colors z-10">
             <X size={22} />
           </button>
           <button
-            className="absolute left-2 md:left-6 text-white w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors z-10"
+            className="absolute left-2 md:left-6 text-white w-10 h-10 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 transition-colors z-10"
             onClick={(e) => {
               e.stopPropagation();
               navigate(-1);
@@ -230,7 +230,7 @@ export default function Gallery() {
             </p>
           </div>
           <button
-            className="absolute right-2 md:right-6 text-white w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors z-10"
+            className="absolute right-2 md:right-6 text-white w-10 h-10 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 transition-colors z-10"
             onClick={(e) => {
               e.stopPropagation();
               navigate(1);
