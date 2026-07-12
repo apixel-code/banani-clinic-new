@@ -68,7 +68,7 @@ const timeline = [
     year: "2018",
     event: "FICD fellowship from the International College of Dentists, USA.",
   },
-  { year: "2019", event: "Second chamber opened at York Hospital, Banani." },
+  { year: "2019", event: "Second chamber opened — BIO Dental & Maxillofacial Surgery Clinic, Banani." },
   {
     year: "2022",
     event:
@@ -182,7 +182,7 @@ export default function About() {
                   </p>
                   <p>
                     Over 15 years and 1500+ patients later, that commitment has
-                    only deepened. Two chambers, five international fellowships,
+                    only deepened. Three chambers, five international fellowships,
                     and a team trained to the same standard — all in service of
                     one mission:{" "}
                     <strong

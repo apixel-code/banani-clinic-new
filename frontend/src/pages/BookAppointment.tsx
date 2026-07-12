@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useToast } from "../components/Toast";
 import { services } from "../data/services";
+import { locations } from "../data/locations";
 import api from "../lib/api";
 import { buildTitle } from "../utils/seoHelpers";
 
@@ -421,30 +422,17 @@ export default function BookAppointment() {
                   </div>
                   <div>
                     <label className="label mb-3">Select Branch</label>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {[
-                        {
-                          key: "main",
-                          name: "Main Chamber",
-                          addr: "House #116, Road # 15, Block # C, Banani",
-                          hours: "10AM – 9PM",
-                        },
-                        {
-                          key: "york",
-                          name: "York Hospital Branch",
-                          addr: "House #12&13, Road #22, Banani",
-                          hours: "10AM – 2PM",
-                        },
-                      ].map((b) => (
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                      {locations.map((b) => (
                         <button
-                          key={b.key}
-                          onClick={() => setForm({ ...form, branch: b.key })}
+                          key={b.id}
+                          onClick={() => setForm({ ...form, branch: b.id })}
                           className="text-left p-4 rounded-xl border-2 transition-all duration-200"
                           style={{
                             borderColor:
-                              form.branch === b.key ? "#2B7CC1" : "#D6E9FF",
+                              form.branch === b.id ? "#2B7CC1" : "#D6E9FF",
                             backgroundColor:
-                              form.branch === b.key ? "#EBF4FF" : "white",
+                              form.branch === b.id ? "#EBF4FF" : "white",
                           }}
                         >
                           <div
@@ -453,7 +441,7 @@ export default function BookAppointment() {
                           >
                             {b.name}
                           </div>
-                          <div className="text-xs text-gray-500">{b.addr}</div>
+                          <div className="text-xs text-gray-500">{b.address}</div>
                           <div
                             className="text-xs font-medium mt-1"
                             style={{ color: "#2B7CC1" }}
@@ -555,9 +543,7 @@ export default function BookAppointment() {
                       ["Doctor", form.doctor_name],
                       [
                         "Branch",
-                        form.branch === "main"
-                          ? "Main Chamber"
-                          : "York Hospital Branch",
+                        locations.find((l) => l.id === form.branch)?.name || "",
                       ],
                       ["Date", form.preferred_date],
                       ["Time", form.preferred_time],

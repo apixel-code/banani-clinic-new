@@ -1,27 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { MapPin, Phone, Clock, Mail, ArrowRight, Bus, Car } from 'lucide-react';
+import { MapPin, Phone, Clock, Globe, ArrowRight, Bus, Car } from 'lucide-react';
 import { buildTitle } from '../utils/seoHelpers';
-
-const chambers = [
-  {
-    name: 'Dental & Maxillofacial Surgery Banani Clinic (Specialized Hospital)',
-    address: 'House #116, Road # 15, Block # C, Banani, Dhaka-1213',
-    phones: ['01711-780957', '01711-780958'],
-    hours: '10:00 AM – 4:00 PM',
-    email: 'aslam.almehdi@gmail.com',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.3!2d90.4012!3d23.7945!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQ3JzQwLjIiTiA5MMKwMjQnMDQuMyJF!5e0!3m2!1sen!2sbd!4v1234567890',
-  },
-  {
-    name: 'BIO Dental & Maxillofacial Surgery Clinic',
-    address: 'Lavel 8, Praasad Trade Centre, 6 Kemal Ataturk Avenue, Banani, Dhaka-1213',
-    phones: ['01711734470', '01711734478'],
-    hours: '4:00 PM – 9:00 PM',
-    email: 'aslam.almehdi@gmail.com',
-    mapSrc: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.2!2d90.4025!3d23.7955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQ3JzQ0LjAiTiA5MMKwMjQnMDkuMCJF!5e0!3m2!1sen!2sbd!4v1234567891',
-  },
-];
+import { locations, telHref, websiteLabel, mapEmbedSrc } from '../data/locations';
 
 export default function Locations() {
   const ref = useRef<HTMLDivElement>(null);
@@ -38,26 +20,26 @@ export default function Locations() {
   return (
     <>
       <Helmet>
-        <title>{buildTitle('Our Locations – Two Chambers in Banani, Dhaka')}</title>
-        <meta name="description" content="Banani Clinic has two convenient chambers in Banani, Dhaka. Find directions, hours, and contact info for each location." />
+        <title>{buildTitle('Our Locations – Three Chambers in Banani, Dhaka')}</title>
+        <meta name="description" content="Banani Clinic has three convenient chambers in Banani, Dhaka. Find directions, hours, and contact info for each location." />
       </Helmet>
       <div ref={ref}>
         <section className="relative py-28 md:py-36" style={{ background: 'linear-gradient(135deg, #1A3A5C 0%, #2B7CC1 100%)' }}>
           <div className="container-custom text-center">
             <span className="badge mb-4 border border-white/30" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#bfdbfe' }}>Find Us</span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6 fade-in">Two Convenient Locations</h1>
-            <p className="text-lg md:text-xl max-w-2xl mx-auto fade-in" style={{ color: '#bfdbfe' }}>Both chambers are located in Banani, Dhaka — easily accessible from all parts of the city.</p>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mb-6 fade-in">Three Convenient Locations</h1>
+            <p className="text-lg md:text-xl max-w-2xl mx-auto fade-in" style={{ color: '#bfdbfe' }}>All our chambers are located in Banani, Dhaka — easily accessible from all parts of the city.</p>
           </div>
         </section>
 
         <section className="py-14 md:py-20" style={{ backgroundColor: '#EBF4FF' }}>
           <div className="container-custom">
-            <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
-              {chambers.map((chamber, i) => (
-                <div key={i} className="fade-in bg-white rounded-2xl shadow-sm border border-blue-100 overflow-hidden" style={{ animationDelay: `${i * 0.1}s` }}>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {locations.map((chamber, i) => (
+                <div key={chamber.name} className="fade-in flex flex-col bg-white rounded-2xl shadow-sm border border-blue-100 overflow-hidden" style={{ animationDelay: `${i * 0.1}s` }}>
                   <div className="aspect-video w-full overflow-hidden bg-gray-100">
                     <iframe
-                      src={chamber.mapSrc}
+                      src={mapEmbedSrc(chamber.address)}
                       width="100%" height="100%"
                       style={{ border: 0 }}
                       allowFullScreen loading="lazy"
@@ -65,20 +47,20 @@ export default function Locations() {
                       title={chamber.name}
                     />
                   </div>
-                  <div className="p-6 md:p-8">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-4 text-white" style={{ backgroundColor: '#2B7CC1' }}>
-                      {i === 0 ? 'Main Branch' : 'Branch'}
+                  <div className="flex flex-col flex-1 p-6 md:p-7">
+                    <div className="inline-flex self-start items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-4 text-white" style={{ backgroundColor: '#2B7CC1' }}>
+                      {chamber.label}
                     </div>
-                    <h2 className="text-xl md:text-2xl font-bold mb-5" style={{ color: '#1A3A5C' }}>{chamber.name}</h2>
+                    <h2 className="text-lg md:text-xl font-bold mb-4" style={{ color: '#1A3A5C' }}>{chamber.name}</h2>
                     <div className="space-y-3 mb-6">
                       <div className="flex gap-3 text-sm text-gray-600"><MapPin size={16} className="flex-shrink-0 mt-0.5" style={{ color: '#2B7CC1' }} /><span>{chamber.address}</span></div>
+                      <div className="flex gap-3 text-sm text-gray-600"><Clock size={16} className="flex-shrink-0" style={{ color: '#2B7CC1' }} /><span>Visiting Hours: {chamber.hours}</span></div>
                       <div className="flex gap-3 text-sm text-gray-600"><Phone size={16} className="flex-shrink-0" style={{ color: '#2B7CC1' }} />
-                        <div>{chamber.phones.map((p) => <a key={p} href={`tel:+880${p.replace(/-/g,'').slice(1)}`} className="block hover:text-blue-600 transition-colors">{p}</a>)}</div>
+                        <div>{chamber.phones.map((p) => <a key={p} href={telHref(p)} className="block hover:text-blue-600 transition-colors">{p}</a>)}</div>
                       </div>
-                      <div className="flex gap-3 text-sm text-gray-600"><Clock size={16} className="flex-shrink-0" style={{ color: '#2B7CC1' }} /><span>{chamber.hours}</span></div>
-                      <div className="flex gap-3 text-sm text-gray-600"><Mail size={16} className="flex-shrink-0" style={{ color: '#2B7CC1' }} /><a href={`mailto:${chamber.email}`} className="hover:text-blue-600 transition-colors">{chamber.email}</a></div>
+                      <div className="flex gap-3 text-sm text-gray-600"><Globe size={16} className="flex-shrink-0 mt-0.5" style={{ color: '#2B7CC1' }} /><a href={chamber.website} target="_blank" rel="noopener noreferrer" className="break-all hover:text-blue-600 transition-colors">{websiteLabel(chamber.website)}</a></div>
                     </div>
-                    <Link to="/book" className="btn-primary w-full justify-center">Book at this Location <ArrowRight size={16} /></Link>
+                    <Link to="/book" className="btn-primary w-full justify-center mt-auto">Book at this Location <ArrowRight size={16} /></Link>
                   </div>
                 </div>
               ))}

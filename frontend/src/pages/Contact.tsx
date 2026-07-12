@@ -1,9 +1,10 @@
-import { Clock, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
+import { Clock, Globe, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useToast } from "../components/Toast";
 import api from "../lib/api";
 import { buildTitle } from "../utils/seoHelpers";
+import { locations, telHref, websiteLabel } from "../data/locations";
 
 export default function Contact() {
   const ref = useRef<HTMLDivElement>(null);
@@ -66,7 +67,7 @@ export default function Contact() {
         <title>{buildTitle("Contact Us – Get in Touch")}</title>
         <meta
           name="description"
-          content="Contact Banani Clinic. Call, email, or send a message to reach Dr. Aslam Al Mehdi's team. Two chambers in Banani, Dhaka."
+          content="Contact Banani Clinic. Call, email, or send a message to reach Dr. Aslam Al Mehdi's team. Three chambers in Banani, Dhaka."
         />
       </Helmet>
       <div ref={ref}>
@@ -107,90 +108,81 @@ export default function Contact() {
             <div className="grid lg:grid-cols-2 gap-8 md:gap-12">
               {/* Contact info */}
               <div className="fade-in space-y-5">
-                {[
-                  {
-                    icon: <Phone size={22} />,
-                    title:
-                      "Dental & Maxillofacial Surgery Banani Clinic (Specialized Hospital)",
-                    lines: ["01711-780957", "01711-780958"],
-                    href: "tel:+8801711780957",
-                  },
-                  {
-                    icon: <Phone size={22} />,
-                    title: "BIO Dental & Maxillofacial Surgery Clinic",
-                    lines: ["01711734470", "01711734478"],
-                    href: "tel:+8801711734470",
-                  },
-                  {
-                    icon: <Mail size={22} />,
-                    title: "Email",
-                    lines: ["aslam.almehdi@gmail.com"],
-                    href: "mailto:aslam.almehdi@gmail.com",
-                  },
-                  {
-                    icon: <MapPin size={22} />,
-                    title: "Main Branch Address",
-                    lines: [
-                      "House #116, Road # 15, Block # C, Banani",
-                      "Dhaka-1213, Bangladesh",
-                    ],
-                    href: undefined,
-                  },
-                  {
-                    icon: <MapPin size={22} />,
-                    title: "BIO Clinic Address",
-                    lines: [
-                      "Lavel 8, Praasad Trade Centre",
-                      "6 Kemal Ataturk Avenue, Banani",
-                      "Dhaka-1213, Bangladesh",
-                    ],
-                    href: undefined,
-                  },
-                  {
-                    icon: <Clock size={22} />,
-                    title: "Opening Hours",
-                    lines: [
-                      "Main Branch: 10:00 AM – 4:00 PM",
-                      "BIO Clinic: 4:00 PM – 9:00 PM",
-                    ],
-                    href: undefined,
-                  },
-                ].map((item, i) => (
+                {locations.map((loc) => (
                   <div
-                    key={i}
-                    className="flex gap-4 bg-white rounded-2xl p-5 shadow-sm border border-blue-100 items-start"
+                    key={loc.name}
+                    className="bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-blue-100"
                   >
-                    <div
-                      className="w-11 h-11 rounded-xl flex items-center justify-center text-white flex-shrink-0"
+                    <span
+                      className="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-bold text-white mb-3"
                       style={{ backgroundColor: "#2B7CC1" }}
                     >
-                      {item.icon}
-                    </div>
-                    <div>
-                      <h3
-                        className="font-bold text-sm mb-1"
-                        style={{ color: "#1A3A5C" }}
-                      >
-                        {item.title}
-                      </h3>
-                      {item.lines.map((line) =>
-                        item.href ? (
-                          <a
-                            key={line}
-                            href={item.href.startsWith("tel:") ? `tel:+880${line.replace(/-/g, "").slice(1)}` : item.href}
-                            className="block text-sm text-gray-600 hover:text-blue-600 transition-colors"
-                          >
-                            {line}
-                          </a>
-                        ) : (
-                          <p key={line} className="text-sm text-gray-600">
-                            {line}
-                          </p>
-                        ),
-                      )}
+                      {loc.label}
+                    </span>
+                    <h3
+                      className="font-bold text-base mb-3"
+                      style={{ color: "#1A3A5C" }}
+                    >
+                      {loc.name}
+                    </h3>
+                    <div className="space-y-2.5">
+                      <div className="flex gap-2.5 text-sm text-gray-600">
+                        <MapPin size={16} className="flex-shrink-0 mt-0.5" style={{ color: "#2B7CC1" }} />
+                        <span>{loc.address}</span>
+                      </div>
+                      <div className="flex gap-2.5 text-sm text-gray-600">
+                        <Clock size={16} className="flex-shrink-0 mt-0.5" style={{ color: "#2B7CC1" }} />
+                        <span>Visiting Hours: {loc.hours}</span>
+                      </div>
+                      <div className="flex gap-2.5 text-sm text-gray-600">
+                        <Phone size={16} className="flex-shrink-0 mt-0.5" style={{ color: "#2B7CC1" }} />
+                        <div>
+                          {loc.phones.map((p) => (
+                            <a
+                              key={p}
+                              href={telHref(p)}
+                              className="block hover:text-blue-600 transition-colors"
+                            >
+                              {p}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="flex gap-2.5 text-sm text-gray-600">
+                        <Globe size={16} className="flex-shrink-0 mt-0.5" style={{ color: "#2B7CC1" }} />
+                        <a
+                          href={loc.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="break-all hover:text-blue-600 transition-colors"
+                        >
+                          {websiteLabel(loc.website)}
+                        </a>
+                      </div>
                     </div>
                   </div>
                 ))}
+
+                <div className="flex gap-4 bg-white rounded-2xl p-5 shadow-sm border border-blue-100 items-start">
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center text-white flex-shrink-0"
+                    style={{ backgroundColor: "#2B7CC1" }}
+                  >
+                    <Mail size={22} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-sm mb-1" style={{ color: "#1A3A5C" }}>
+                      Email
+                    </h3>
+                    <a
+                      href="mailto:aslam.almehdi@gmail.com"
+                      className="block text-sm text-gray-600 hover:text-blue-600 transition-colors"
+                    >
+                      aslam.almehdi@gmail.com
+                    </a>
+                  </div>
+                </div>
+
                 <a
                   href="https://wa.me/8801711780957?text=Hello%2C%20I%20would%20like%20to%20inquire%20about%20treatment."
                   target="_blank"

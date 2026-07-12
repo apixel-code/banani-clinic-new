@@ -68,9 +68,7 @@ export default function Navbar() {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link to="/" className="flex items-center gap-2.5 flex-shrink-0">
-            <div
-              className="w-9 h-9 md:w-10 md:h-10 rounded-xl overflow-hidden bg-white shadow-md flex-shrink-0"
-            >
+            <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl overflow-hidden bg-white shadow-md flex-shrink-0">
               <img
                 src="/logo.jpeg"
                 alt="Banani Clinic logo"
@@ -82,13 +80,13 @@ export default function Navbar() {
                 className={`font-bold text-xs sm:text-sm md:text-sm leading-tight transition-colors ${solid ? "text-navy-DEFAULT" : "text-white"}`}
                 style={{ color: solid ? "#1A3A5C" : "white" }}
               >
-                Dental & Maxillofacial Surgery
+                Banani Clinic (Specialized Hospital)
               </div>
               <div
                 className="text-[10px] sm:text-xs md:text-xs leading-tight"
                 style={{ color: solid ? "#8A9BB0" : "#bfdbfe" }}
               >
-                Banani Clinic (Specialized Hospital)
+                Dental, Oral & Maxillofacial Surgery
               </div>
             </div>
           </Link>
