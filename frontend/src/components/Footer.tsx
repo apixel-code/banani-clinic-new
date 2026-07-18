@@ -37,7 +37,7 @@ export default function Footer() {
               </div>
               <div>
                 <div className="font-bold text-sm text-white leading-tight">{CLINIC_NAME}</div>
-                <div className="text-xs leading-tight" style={{ color: '#bfdbfe' }}>{CLINIC_TAGLINE}</div>
+                <div className="font-bold text-sm text-white leading-tight">{CLINIC_TAGLINE}</div>
               </div>
             </Link>
             <p className="text-sm leading-relaxed mb-5 max-w-md" style={{ color: '#bfdbfe' }}>
