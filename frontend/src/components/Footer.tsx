@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Phone, MapPin, Clock, Globe, Facebook, Instagram, Youtube, MessageCircle, ArrowRight } from 'lucide-react';
+import { Phone, MapPin, Clock, Globe, Facebook, Youtube, MessageCircle, ArrowRight } from 'lucide-react';
 import {
   locations,
   telHref,
@@ -7,11 +7,11 @@ import {
   CLINIC_NAME,
   CLINIC_TAGLINE,
 } from '../data/locations';
+import { FACEBOOK_PAGE_URL, YOUTUBE_CHANNEL_URL } from '../data/social';
 
 const socialLinks = [
-  { label: 'Facebook', href: 'https://www.facebook.com/bcfc.org', Icon: Facebook },
-  { label: 'Instagram', href: '#', Icon: Instagram },
-  { label: 'YouTube', href: '#', Icon: Youtube },
+  { label: 'Facebook', href: FACEBOOK_PAGE_URL, Icon: Facebook },
+  { label: 'YouTube', href: YOUTUBE_CHANNEL_URL, Icon: Youtube },
 ];
 
 const quickLinks: [string, string][] = [
@@ -49,8 +49,8 @@ export default function Footer() {
                 <a
                   key={label}
                   href={href}
-                  target={href === '#' ? undefined : '_blank'}
-                  rel={href === '#' ? undefined : 'noopener noreferrer'}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   className="w-9 h-9 rounded-lg flex items-center justify-center transition-colors"
                   style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}

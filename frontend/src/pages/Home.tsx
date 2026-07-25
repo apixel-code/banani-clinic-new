@@ -14,6 +14,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import BlogCard from "../components/BlogCard";
 import ServiceCard from "../components/ServiceCard";
+import SocialActivities from "../components/SocialActivities";
 import TestimonialSlider from "../components/TestimonialSlider";
 import { services } from "../data/services";
 import { useCounter } from "../hooks/useScrollAnimation";
@@ -477,12 +478,19 @@ export default function Home() {
                 className="badge mb-3"
                 style={{ backgroundColor: "#D6E9FF", color: "#2268A8" }}
               >
-                Our Consultation
+                About Our Specialist
               </span>
-              <h2 className="section-title fade-in">Meet Our Consultants</h2>
+              <h2 className="section-title fade-in">
+                Dedicated Dental, Oral & Maxillofacial Surgery Expert
+              </h2>
               <p className="section-subtitle max-w-2xl mx-auto fade-in px-4">
-                Experienced consultants providing specialized dental and
-                maxillofacial care with international training.
+                We provide advanced oral and maxillofacial treatment with
+                precision, safety, and patient-focused care.
+              </p>
+              <p className="section-subtitle max-w-2xl mx-auto fade-in px-4 mt-3">
+                From dental implants to complex oral surgeries, our goal is to
+                deliver comfortable treatment and long-term results using modern
+                surgical techniques.
               </p>
             </div>
 
@@ -526,6 +534,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* SOCIAL ACTIVITIES */}
+        <SocialActivities />
 
         {/* TESTIMONIALS */}
         <section
