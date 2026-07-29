@@ -500,7 +500,7 @@ export default function Home() {
                   key={doctor.name}
                   className="fade-in rounded-2xl border border-blue-100 bg-white p-4 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:p-5"
                 >
-                  <div className="mx-auto mb-4 aspect-square w-full max-w-[300px] overflow-hidden rounded-2xl bg-blue-50 ring-1 ring-blue-100 sm:max-w-[320px] lg:max-w-[340px]">
+                  <div className="mx-auto mb-4 aspect-square w-full max-w-[380px] overflow-hidden rounded-2xl bg-blue-50 ring-1 ring-blue-100 sm:max-w-[420px] lg:max-w-[460px]">
                     <img
                       src={doctor.image}
                       alt={doctor.name}
