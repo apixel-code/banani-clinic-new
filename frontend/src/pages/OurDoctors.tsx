@@ -139,7 +139,7 @@ export default function OurDoctors() {
                     <p className="text-sm font-semibold mb-3" style={{ color: "#2B7CC1" }}>
                       {doctor.designation}
                     </p>
-                    <p className="text-sm text-gray-600 leading-relaxed line-clamp-3 mb-4">
+                    <p className="text-sm text-black leading-relaxed line-clamp-3 mb-4">
                       {doctor.short_bio || "View profile, credentials and areas of expertise."}
                     </p>
 
@@ -159,7 +159,7 @@ export default function OurDoctors() {
 
                     <div className="flex items-center justify-between gap-3 pt-4 border-t border-gray-100">
                       {doctor.phone ? (
-                        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500">
+                        <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-black">
                           <Phone size={13} />
                           {doctor.phone}
                         </span>

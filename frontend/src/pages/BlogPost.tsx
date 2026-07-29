@@ -170,7 +170,7 @@ export default function BlogPost() {
                   </div>
                   {post.excerpt && (
                     <blockquote
-                      className="border-l-4 pl-5 mb-6 text-gray-600 italic text-base md:text-lg leading-relaxed"
+                      className="border-l-4 pl-5 mb-6 text-black italic text-base md:text-lg leading-relaxed"
                       style={{ borderColor: "#2B7CC1" }}
                     >
                       {post.excerpt}
@@ -206,7 +206,7 @@ export default function BlogPost() {
                   <h3 className="font-bold mb-4" style={{ color: "#1A3A5C" }}>
                     Book a Consultation
                   </h3>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-sm text-black mb-4">
                     Ready to take the next step? Book with Dr. Aslam Al Mehdi
                     today.
                   </p>

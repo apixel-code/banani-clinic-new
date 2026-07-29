@@ -43,7 +43,7 @@ export default function TestimonialSlider() {
                 />
               ))}
             </div>
-            <blockquote className="mb-5 line-clamp-5 text-sm leading-relaxed text-gray-600 md:text-base">
+            <blockquote className="mb-5 line-clamp-5 text-sm leading-relaxed text-black md:text-base">
               "{testimonial.text}"
             </blockquote>
             <div className="flex items-center gap-3 border-t border-gray-100 pt-4">

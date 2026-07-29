@@ -90,7 +90,7 @@
 
   .section-subtitle {
     @apply text-base md:text-lg mt-4 leading-relaxed;
-    color: #6b7280;
+    color: #000000;
   }
 
   .card {
@@ -184,10 +184,10 @@
   color: #1a3a5c;
 }
 .prose-clinic p {
-  @apply text-gray-700 leading-relaxed mb-4 text-sm sm:text-base;
+  @apply text-black leading-relaxed mb-4 text-sm sm:text-base;
 }
 .prose-clinic ul {
-  @apply list-disc list-inside space-y-2 mb-4 text-gray-700 text-sm sm:text-base;
+  @apply list-disc list-inside space-y-2 mb-4 text-black text-sm sm:text-base;
 }
 .prose-clinic strong {
   @apply font-semibold;

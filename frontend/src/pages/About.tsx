@@ -167,7 +167,7 @@ export default function About() {
                 <h2 className="section-title mb-5">
                   Born From a Gap in Quality Care
                 </h2>
-                <div className="space-y-4 text-gray-700 leading-relaxed text-sm md:text-base">
+                <div className="space-y-4 text-black leading-relaxed text-sm md:text-base">
                   <p>
                     In 2008, Dr. Aslam Al Mehdi returned from training in South
                     Korea with a clear vision: Dhaka deserved a dental clinic
@@ -238,7 +238,7 @@ export default function About() {
                   >
                     {v.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-black text-sm leading-relaxed">
                     {v.desc}
                   </p>
                 </div>
@@ -281,7 +281,7 @@ export default function About() {
                     )}
                   </div>
                   <div className="pb-6">
-                    <p className="text-gray-700 text-sm md:text-base leading-relaxed pt-3">
+                    <p className="text-black text-sm md:text-base leading-relaxed pt-3">
                       {item.event}
                     </p>
                   </div>
@@ -319,7 +319,7 @@ export default function About() {
                     className="flex-shrink-0 mt-0.5"
                     style={{ color: "#2B7CC1" }}
                   />
-                  <span className="text-sm text-gray-700 leading-relaxed">
+                  <span className="text-sm text-black leading-relaxed">
                     {item}
                   </span>
                 </div>

@@ -403,7 +403,7 @@ export default function Home() {
                   >
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed text-sm">
+                  <p className="text-black leading-relaxed text-sm">
                     {item.desc}
                   </p>
                 </div>
@@ -437,7 +437,7 @@ export default function Home() {
           <div className="container-custom">
             <div className="text-center mb-8 md:mb-9">
               <span
-                className="badge mb-3"
+                className="badge mb-3 px-4 py-1.5 text-sm md:text-base"
                 style={{ backgroundColor: "#D6E9FF", color: "#2268A8" }}
               >
                 Our Specialties
@@ -475,7 +475,7 @@ export default function Home() {
           <div className="container-custom">
             <div className="text-center mb-10 md:mb-12">
               <span
-                className="badge mb-3"
+                className="badge mb-3 px-4 py-1.5 text-sm md:text-base"
                 style={{ backgroundColor: "#D6E9FF", color: "#2268A8" }}
               >
                 About Our Specialist
@@ -523,7 +523,7 @@ export default function Home() {
                       <p
                         key={line}
                         className="text-sm font-medium leading-relaxed md:text-base"
-                        style={{ color: "#5f6f82" }}
+                        style={{ color: "#000000" }}
                       >
                         {line}
                       </p>
@@ -546,7 +546,7 @@ export default function Home() {
           <div className="container-custom">
             <div className="text-center mb-10 md:mb-12">
               <span
-                className="badge mb-3"
+                className="badge mb-3 px-4 py-1.5 text-sm md:text-base"
                 style={{ backgroundColor: "#D6E9FF", color: "#2268A8" }}
               >
                 Patient Reviews
@@ -560,7 +560,7 @@ export default function Home() {
                     className="fill-yellow-400 text-yellow-400"
                   />
                 ))}
-                <span className="text-gray-600 text-sm ml-2">
+                <span className="text-black text-sm ml-2">
                   4.9/5 from 200+ reviews
                 </span>
               </div>
@@ -593,7 +593,7 @@ export default function Home() {
                         BMDC Reg. No. 871
                       </span>
                     </div>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-black">
                       Bangladesh Medical & Dental Council
                     </p>
                   </div>
@@ -601,7 +601,7 @@ export default function Home() {
               </div>
               <div className="fade-in order-1 lg:order-2">
                 <span
-                  className="badge mb-4"
+                  className="badge mb-4 px-4 py-1.5 text-sm md:text-base"
                   style={{ backgroundColor: "#D6E9FF", color: "#2268A8" }}
                 >
                   Meet Your Specialist
@@ -649,13 +649,13 @@ export default function Home() {
                       className="flex items-start gap-3 p-2.5 rounded-xl hover:bg-blue-50 transition-colors"
                     >
                       <span className="text-lg flex-shrink-0">{c.flag}</span>
-                      <span className="text-gray-700 text-sm leading-relaxed">
+                      <span className="text-black text-sm leading-relaxed">
                         {c.text}
                       </span>
                     </div>
                   ))}
                 </div>
-                <p className="text-gray-600 leading-relaxed mb-6 text-sm md:text-base">
+                <p className="text-black leading-relaxed mb-6 text-sm md:text-base">
                   With over 15 years of clinical experience and training across
                   four continents, Dr. Aslam brings world-class expertise to
                   every patient.
@@ -688,7 +688,7 @@ export default function Home() {
             <div className="container-custom">
               <div className="text-center mb-10 md:mb-12">
                 <span
-                  className="badge mb-3"
+                  className="badge mb-3 px-4 py-1.5 text-sm md:text-base"
                   style={{ backgroundColor: "#D6E9FF", color: "#2268A8" }}
                 >
                   Knowledge Hub

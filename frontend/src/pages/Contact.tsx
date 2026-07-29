@@ -126,15 +126,15 @@ export default function Contact() {
                       {loc.name}
                     </h3>
                     <div className="space-y-2.5">
-                      <div className="flex gap-2.5 text-sm text-gray-600">
+                      <div className="flex gap-2.5 text-sm text-black">
                         <MapPin size={16} className="flex-shrink-0 mt-0.5" style={{ color: "#2B7CC1" }} />
                         <span>{loc.address}</span>
                       </div>
-                      <div className="flex gap-2.5 text-sm text-gray-600">
+                      <div className="flex gap-2.5 text-sm text-black">
                         <Clock size={16} className="flex-shrink-0 mt-0.5" style={{ color: "#2B7CC1" }} />
                         <span>Visiting Hours: {loc.hours}</span>
                       </div>
-                      <div className="flex gap-2.5 text-sm text-gray-600">
+                      <div className="flex gap-2.5 text-sm text-black">
                         <Phone size={16} className="flex-shrink-0 mt-0.5" style={{ color: "#2B7CC1" }} />
                         <div>
                           {loc.phones.map((p) => (
@@ -148,7 +148,7 @@ export default function Contact() {
                           ))}
                         </div>
                       </div>
-                      <div className="flex gap-2.5 text-sm text-gray-600">
+                      <div className="flex gap-2.5 text-sm text-black">
                         <Globe size={16} className="flex-shrink-0 mt-0.5" style={{ color: "#2B7CC1" }} />
                         <a
                           href={loc.website}
@@ -176,7 +176,7 @@ export default function Contact() {
                     </h3>
                     <a
                       href="mailto:aslam.almehdi@gmail.com"
-                      className="block text-sm text-gray-600 hover:text-blue-600 transition-colors"
+                      className="block text-sm text-black hover:text-blue-600 transition-colors"
                     >
                       aslam.almehdi@gmail.com
                     </a>
@@ -210,7 +210,7 @@ export default function Contact() {
                     >
                       Message Sent!
                     </h3>
-                    <p className="text-gray-600 mb-6">
+                    <p className="text-black mb-6">
                       We will be in touch within one business day.
                     </p>
                     <button

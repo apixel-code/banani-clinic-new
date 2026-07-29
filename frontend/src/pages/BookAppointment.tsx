@@ -160,7 +160,7 @@ export default function BookAppointment() {
           >
             Appointment Requested!
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-black mb-6">
             Thank you, <strong>{form.patient_name}</strong>. We have received
             your request for <strong>{form.service}</strong> on{" "}
             <strong>{form.preferred_date}</strong> at{" "}
@@ -173,7 +173,7 @@ export default function BookAppointment() {
             <p className="font-semibold mb-2" style={{ color: "#1A3A5C" }}>
               What happens next:
             </p>
-            <ol className="list-decimal list-inside space-y-1 text-gray-600">
+            <ol className="list-decimal list-inside space-y-1 text-black">
               <li>
                 Our team will call you on <strong>{form.patient_phone}</strong>{" "}
                 to confirm.
@@ -441,7 +441,7 @@ export default function BookAppointment() {
                           >
                             {b.name}
                           </div>
-                          <div className="text-xs text-gray-500">{b.address}</div>
+                          <div className="text-xs text-black">{b.address}</div>
                           <div
                             className="text-xs font-medium mt-1"
                             style={{ color: "#2B7CC1" }}
@@ -558,11 +558,11 @@ export default function BookAppointment() {
                           >
                             {row[0]}:
                           </span>
-                          <span className="text-gray-700">{row[1]}</span>
+                          <span className="text-black">{row[1]}</span>
                         </div>
                       ))}
                   </div>
-                  <p className="text-xs text-gray-500 mb-4">
+                  <p className="text-xs text-black mb-4">
                     By submitting, you agree to be contacted by our team to
                     confirm your appointment.
                   </p>

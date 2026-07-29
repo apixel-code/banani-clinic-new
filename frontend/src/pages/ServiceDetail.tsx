@@ -75,12 +75,12 @@ export default function ServiceDetail() {
               <div className="lg:col-span-2 space-y-8">
                 <div className="fade-in bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-blue-100">
                   <h2 className="text-xl md:text-2xl font-bold mb-4" style={{ color: '#1A3A5C' }}>What Is {service.title}?</h2>
-                  <p className="text-gray-700 leading-relaxed">{service.whatIsIt}</p>
+                  <p className="text-black leading-relaxed">{service.whatIsIt}</p>
                 </div>
 
                 <div className="fade-in bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-blue-100">
                   <h2 className="text-xl md:text-2xl font-bold mb-4" style={{ color: '#1A3A5C' }}>Who Needs This Treatment?</h2>
-                  <p className="text-gray-700 leading-relaxed">{service.whoNeedsIt}</p>
+                  <p className="text-black leading-relaxed">{service.whoNeedsIt}</p>
                 </div>
 
                 <div className="fade-in bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-blue-100">
@@ -89,7 +89,7 @@ export default function ServiceDetail() {
                     {service.process.map((step, i) => (
                       <div key={i} className="flex gap-4">
                         <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm flex-shrink-0 mt-0.5" style={{ backgroundColor: '#2B7CC1' }}>{i + 1}</div>
-                        <p className="text-gray-700 leading-relaxed pt-1">{step}</p>
+                        <p className="text-black leading-relaxed pt-1">{step}</p>
                       </div>
                     ))}
                   </div>
@@ -105,7 +105,7 @@ export default function ServiceDetail() {
                           <span className="font-semibold text-sm md:text-base pr-4" style={{ color: '#1A3A5C' }}>{faq.q}</span>
                           <ChevronDown size={18} className={`flex-shrink-0 transition-transform duration-200 ${openFaq === i ? 'rotate-180' : ''}`} style={{ color: '#2B7CC1' }} />
                         </button>
-                        {openFaq === i && <div className="px-4 pb-4 text-gray-600 text-sm leading-relaxed">{faq.a}</div>}
+                        {openFaq === i && <div className="px-4 pb-4 text-black text-sm leading-relaxed">{faq.a}</div>}
                       </div>
                     ))}
                   </div>
@@ -117,7 +117,7 @@ export default function ServiceDetail() {
                 <div className="sticky top-24 space-y-5">
                   <div className="bg-white rounded-2xl p-6 shadow-sm border border-blue-100 fade-in">
                     <h3 className="font-bold text-lg mb-4" style={{ color: '#1A3A5C' }}>Book This Treatment</h3>
-                    <p className="text-sm text-gray-600 mb-5">Get a free consultation with Dr. Aslam Al Mehdi and find out if this treatment is right for you.</p>
+                    <p className="text-sm text-black mb-5">Get a free consultation with Dr. Aslam Al Mehdi and find out if this treatment is right for you.</p>
                     <Link to="/book" className="btn-primary w-full justify-center mb-3">
                       <Calendar size={16} /> Book Appointment
                     </Link>

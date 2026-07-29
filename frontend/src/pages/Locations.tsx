@@ -53,12 +53,12 @@ export default function Locations() {
                     </div>
                     <h2 className="text-lg md:text-xl font-bold mb-4" style={{ color: '#1A3A5C' }}>{chamber.name}</h2>
                     <div className="space-y-3 mb-6">
-                      <div className="flex gap-3 text-sm text-gray-600"><MapPin size={16} className="flex-shrink-0 mt-0.5" style={{ color: '#2B7CC1' }} /><span>{chamber.address}</span></div>
-                      <div className="flex gap-3 text-sm text-gray-600"><Clock size={16} className="flex-shrink-0" style={{ color: '#2B7CC1' }} /><span>Visiting Hours: {chamber.hours}</span></div>
-                      <div className="flex gap-3 text-sm text-gray-600"><Phone size={16} className="flex-shrink-0" style={{ color: '#2B7CC1' }} />
+                      <div className="flex gap-3 text-sm text-black"><MapPin size={16} className="flex-shrink-0 mt-0.5" style={{ color: '#2B7CC1' }} /><span>{chamber.address}</span></div>
+                      <div className="flex gap-3 text-sm text-black"><Clock size={16} className="flex-shrink-0" style={{ color: '#2B7CC1' }} /><span>Visiting Hours: {chamber.hours}</span></div>
+                      <div className="flex gap-3 text-sm text-black"><Phone size={16} className="flex-shrink-0" style={{ color: '#2B7CC1' }} />
                         <div>{chamber.phones.map((p) => <a key={p} href={telHref(p)} className="block hover:text-blue-600 transition-colors">{p}</a>)}</div>
                       </div>
-                      <div className="flex gap-3 text-sm text-gray-600"><Globe size={16} className="flex-shrink-0 mt-0.5" style={{ color: '#2B7CC1' }} /><a href={chamber.website} target="_blank" rel="noopener noreferrer" className="break-all hover:text-blue-600 transition-colors">{websiteLabel(chamber.website)}</a></div>
+                      <div className="flex gap-3 text-sm text-black"><Globe size={16} className="flex-shrink-0 mt-0.5" style={{ color: '#2B7CC1' }} /><a href={chamber.website} target="_blank" rel="noopener noreferrer" className="break-all hover:text-blue-600 transition-colors">{websiteLabel(chamber.website)}</a></div>
                     </div>
                     <Link to="/book" className="btn-primary w-full justify-center mt-auto">Book at this Location <ArrowRight size={16} /></Link>
                   </div>
@@ -78,7 +78,7 @@ export default function Locations() {
                   <div key={i} className="fade-in bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-blue-100" style={{ animationDelay: `${i * 0.08}s` }}>
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 text-white" style={{ backgroundColor: '#2B7CC1' }}>{item.icon}</div>
                     <h3 className="font-bold mb-2" style={{ color: '#1A3A5C' }}>{item.title}</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                    <p className="text-sm text-black leading-relaxed">{item.desc}</p>
                   </div>
                 ))}
               </div>

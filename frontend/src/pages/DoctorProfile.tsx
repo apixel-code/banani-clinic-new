@@ -175,7 +175,7 @@ export default function DoctorProfile() {
                   <div className="text-3xl md:text-4xl font-extrabold mb-1" style={{ color: "#2B7CC1" }}>
                     {stat.value}
                   </div>
-                  <div className="text-xs md:text-sm text-gray-500 font-medium">{stat.label}</div>
+                  <div className="text-xs md:text-sm text-black font-medium">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -188,7 +188,7 @@ export default function DoctorProfile() {
               <div className="lg:col-span-2 space-y-5 fade-in">
                 <h2 className="section-title">Biography</h2>
                 {doctor.biography.map((paragraph: string, index: number) => (
-                  <p key={index} className="text-gray-700 leading-relaxed text-sm md:text-base">
+                  <p key={index} className="text-black leading-relaxed text-sm md:text-base">
                     {paragraph}
                   </p>
                 ))}
@@ -204,7 +204,7 @@ export default function DoctorProfile() {
                         <span className="font-semibold" style={{ color: "#1A3A5C" }}>
                           {detail.label}:
                         </span>
-                        <span className="text-gray-600 ml-2">{detail.value}</span>
+                        <span className="text-black ml-2">{detail.value}</span>
                       </div>
                     ))}
                   </div>
@@ -236,7 +236,7 @@ export default function DoctorProfile() {
                   <div className="font-bold text-sm md:text-base mb-1" style={{ color: "#1A3A5C" }}>
                     {credential.degree}
                   </div>
-                  <div className="text-xs md:text-sm text-gray-500 mb-1">{credential.institution}</div>
+                  <div className="text-xs md:text-sm text-black mb-1">{credential.institution}</div>
                   <div className="text-xs font-semibold" style={{ color: "#2B7CC1" }}>
                     {credential.year}
                   </div>

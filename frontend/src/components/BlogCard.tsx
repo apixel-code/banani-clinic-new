@@ -17,7 +17,7 @@ export default function BlogCard({ title, slug, excerpt, og_image, author, categ
           <span className="flex items-center gap-1"><User size={12} />{author}</span>
         </div>
         <h3 className="font-bold text-base md:text-lg leading-snug mb-3 group-hover:text-blue-600 transition-colors line-clamp-2" style={{ color: '#1A3A5C' }}>{title}</h3>
-        <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-3">{excerpt}</p>
+        <p className="text-black text-sm leading-relaxed mb-4 line-clamp-3">{excerpt}</p>
         <Link to={`/blog/${slug}`} className="inline-flex items-center gap-1.5 font-semibold text-sm hover:gap-3 transition-all duration-200" style={{ color: '#2B7CC1' }}>
           Read More <ArrowRight size={15} />
         </Link>
