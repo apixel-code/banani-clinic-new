@@ -52,12 +52,12 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="w-9 h-9 rounded-lg flex items-center justify-center transition-colors"
+                  className="w-12 h-12 rounded-xl flex items-center justify-center transition-colors"
                   style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
                   onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#2B7CC1')}
                   onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.1)')}
                 >
-                  <Icon size={16} />
+                  <Icon size={24} />
                 </a>
               ))}
             </div>
