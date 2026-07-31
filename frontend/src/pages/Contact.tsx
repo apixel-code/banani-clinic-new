@@ -1,10 +1,21 @@
-import { Clock, Globe, Mail, MapPin, MessageCircle, Phone, Send } from "lucide-react";
+import {
+  Clock,
+  Facebook,
+  Globe,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  Send,
+  Youtube,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useToast } from "../components/Toast";
 import api from "../lib/api";
 import { buildTitle } from "../utils/seoHelpers";
 import { locations, telHref, websiteLabel } from "../data/locations";
+import { FACEBOOK_PAGE_URL, YOUTUBE_CHANNEL_URL } from "../data/social";
 
 export default function Contact() {
   const ref = useRef<HTMLDivElement>(null);
@@ -192,6 +203,32 @@ export default function Contact() {
                 >
                   <MessageCircle size={22} /> Chat on WhatsApp
                 </a>
+
+                <div className="bg-white rounded-2xl p-5 md:p-6 shadow-sm border border-blue-100">
+                  <h3 className="font-bold text-sm mb-4" style={{ color: "#1A3A5C" }}>
+                    Follow Our Social Activities
+                  </h3>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    <a
+                      href={YOUTUBE_CHANNEL_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-white text-sm transition-opacity hover:opacity-90"
+                      style={{ backgroundColor: "#FF0000" }}
+                    >
+                      <Youtube size={18} /> YouTube
+                    </a>
+                    <a
+                      href={FACEBOOK_PAGE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-white text-sm transition-opacity hover:opacity-90"
+                      style={{ backgroundColor: "#1877F2" }}
+                    >
+                      <Facebook size={18} /> Facebook
+                    </a>
+                  </div>
+                </div>
               </div>
 
               {/* Form */}

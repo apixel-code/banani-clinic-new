@@ -1,5 +1,10 @@
+import { FACEBOOK_PAGE_URL, YOUTUBE_CHANNEL_URL } from '../data/social';
+
 export const SITE_NAME = 'Dental & Maxillofacial Surgery | Banani Clinic (Specialized Hospital)';
 export const SITE_URL = 'https://bananiclinic.com';
+
+/** Profiles search engines should treat as the same entity as this site. */
+const SOCIAL_PROFILES = [FACEBOOK_PAGE_URL, YOUTUBE_CHANNEL_URL];
 
 export function buildTitle(pageTitle: string) {
   return `${pageTitle} | ${SITE_NAME}`;
@@ -20,6 +25,7 @@ export const CLINIC_SCHEMA = {
     addressCountry: 'BD',
   },
   priceRange: '$$',
+  sameAs: SOCIAL_PROFILES,
 };
 
 export const DOCTOR_SCHEMA = {
@@ -31,4 +37,5 @@ export const DOCTOR_SCHEMA = {
     '@type': 'MedicalOrganization',
     name: 'Dental & Maxillofacial Surgery | Banani Clinic (Specialized Hospital)',
   },
+  sameAs: SOCIAL_PROFILES,
 };
