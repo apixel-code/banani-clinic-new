@@ -16,14 +16,13 @@ export interface FeaturedVideo {
  *  Swap an id here to feature a different video — no other edits needed. */
 export const FEATURED_VIDEOS: FeaturedVideo[] = [
   {
-    id: "p4lb1A6D0Ww",
-    title:
-      "Discussion meeting of Bangladesh Citizen Party (BCP) — Assoc. Prof. Dr. Aslam Almehdi",
-    start: 6,
+    id: "-_c4IO6IRUQ",
+    title: "Banani Clinic social activity video",
   },
   {
-    id: "ccxBdj7KwWY",
-    title: "বাংলাদেশ সিটিজেন পার্টি (বিসিপি)'র সংক্ষিপ্ত পরিচিতি",
+    id: "e5Nd-euioXY",
+    title: "Banani Clinic social activity video",
+    start: 15,
   },
 ];
 
