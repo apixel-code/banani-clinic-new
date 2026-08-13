@@ -75,7 +75,20 @@ export default function Navbar() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <div className="block min-w-0 max-w-[190px] sm:max-w-[240px] lg:max-w-[260px]">
+            <div className="block min-w-0">
+              <div
+                className={`font-bold text-sm leading-tight transition-colors sm:hidden ${solid ? "text-navy-DEFAULT" : "text-white"}`}
+                style={{ color: solid ? "#1A3A5C" : "white" }}
+              >
+                Banani Clinic
+              </div>
+              <div
+                className={`text-[11px] font-semibold leading-tight transition-colors sm:hidden ${solid ? "text-navy-DEFAULT" : "text-white"}`}
+                style={{ color: solid ? "#1A3A5C" : "white" }}
+              >
+                Specialized Hospital
+              </div>
+              <div className="hidden sm:block max-w-[240px] lg:max-w-[260px]">
               <div
                 className={`font-bold text-xs sm:text-sm md:text-sm leading-tight transition-colors ${solid ? "text-navy-DEFAULT" : "text-white"}`}
                 style={{ color: solid ? "#1A3A5C" : "white" }}
@@ -87,6 +100,7 @@ export default function Navbar() {
                 style={{ color: solid ? "#1A3A5C" : "white" }}
               >
                 Dental, Oral & Maxillofacial Surgery
+              </div>
               </div>
             </div>
           </Link>
