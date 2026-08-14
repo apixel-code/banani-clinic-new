@@ -32,8 +32,8 @@ export function youtubeEmbedSrc({ id, start }: FeaturedVideo) {
   return `https://www.youtube.com/embed/${id}?${params}`;
 }
 
-export const FACEBOOK_PAGE_HANDLE = "@bananiclinic";
-export const FACEBOOK_PAGE_URL = "https://www.facebook.com/bananiclinic";
+export const FACEBOOK_PAGE_HANDLE = "@BananiClinicDental";
+export const FACEBOOK_PAGE_URL = "https://www.facebook.com/BananiClinicDental";
 
 /** Height of the Facebook timeline embed. Passed to the plugin *and* used for
  *  the iframe box so the plugin scrolls its own posts instead of being cut off,
