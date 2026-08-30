@@ -24,35 +24,28 @@ import { CLINIC_SCHEMA, DOCTOR_SCHEMA } from "../utils/seoHelpers";
 type HeroSlide = {
   src: string;
   alt: string;
-  /**
-   * true  = text/branding is already baked into the image → hide the HTML
-   *         hero overlay so it never covers the designed artwork.
-   * false = clean background photo → render the HTML hero overlay on top.
-   * Flip a single value here to change a slide's behavior — no other edits.
-   */
-  hasTextOnImage: boolean;
 };
 
 const heroSlides: HeroSlide[] = [
   {
     src: "/newBanner.jpeg",
-    alt: "Prof. Dr. Aslam Almehdi — PhD (Tokyo), MS, FIAOO (UK), FICD (USA)",
-    hasTextOnImage: true,
+    alt: "Prof. Dr. Aslam Almehdi — Banani Clinic",
   },
   {
     src: "/slider-01.jpeg",
     alt: "Banani Clinic modern dental treatment room",
-    hasTextOnImage: false,
   },
   {
     src: "/slider-02.jpeg",
     alt: "Banani Clinic dental equipment and technology",
-    hasTextOnImage: false,
   },
   {
     src: "/slider-03.jpeg",
     alt: "Banani Clinic specialist at a dental exhibition",
-    hasTextOnImage: false,
+  },
+  {
+    src: "/slider-04.jpeg",
+    alt: "Banani Clinic advanced dental care and services",
   },
 ];
 
@@ -113,9 +106,6 @@ export default function Home() {
   const [posts, setPosts] = useState<any[]>([]);
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
   const [isPainPointsExpanded, setIsPainPointsExpanded] = useState(false);
-
-  const activeSlide = heroSlides[activeHeroSlide];
-  const showOverlayText = !activeSlide.hasTextOnImage;
 
   const showPreviousHeroSlide = () => {
     setActiveHeroSlide((current) =>
@@ -180,10 +170,10 @@ export default function Home() {
       </Helmet>
 
       <div ref={sectionRef}>
-        {/* HERO */}
+        {/* HERO SLIDER */}
         <section
-          className="relative mt-16 flex min-h-[560px] items-center justify-center overflow-hidden bg-gray-100 sm:min-h-[620px] md:mt-20 md:min-h-[680px] lg:min-h-[720px]"
-          aria-label="Clinic highlights"
+          className="relative mt-16 overflow-hidden bg-gray-100 md:mt-20 aspect-[16/9] sm:aspect-[16/7] md:aspect-[21/8] lg:aspect-[24/9] min-h-[260px] sm:min-h-[380px] md:min-h-[480px] lg:min-h-[560px] flex items-center"
+          aria-label="Clinic banner slider"
         >
           <div
             className="absolute inset-0 flex h-full transition-transform duration-700 ease-in-out"
@@ -199,106 +189,12 @@ export default function Home() {
               />
             ))}
           </div>
-          {/* Scrim: only darken clean images. Baked-text images keep their
-              original designed look so the printed text stays crisp. */}
-          {showOverlayText && (
-            <>
-              <div className="absolute inset-0 bg-gradient-to-br from-[#0F2238]/55 via-[#1A3A5C]/30 to-[#2B7CC1]/15" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent" />
-            </>
-          )}
-          {/* HTML hero text: only on clean images. Hidden entirely when the
-              active slide already has text baked into the artwork. */}
-          {showOverlayText && (
-          <div className="container-custom relative z-10 py-10 text-center">
-            <div
-              className="inline-flex items-center gap-2 border border-white/20 px-3 md:px-4 py-2 rounded-full text-xs md:text-sm font-medium mb-6 md:mb-8"
-              style={{
-                backgroundColor: "rgba(255,255,255,0.1)",
-                color: "#bfdbfe",
-              }}
-            >
-              <span
-                className="w-2 h-2 rounded-full animate-pulse flex-shrink-0"
-                style={{ backgroundColor: "#4ade80" }}
-              />
-              Accepting appointments — limited slots this week
-            </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-white leading-tight tracking-tight mb-4 md:mb-6">
-              Stop Living With <br className="hidden sm:block" />
-              <span style={{ color: "#FF6B35" }}>Tooth Pain.</span>
-            </h1>
-            <p
-              className="text-lg md:text-xl lg:text-2xl font-medium mb-3 md:mb-4 px-4"
-              style={{ color: "#dbeafe" }}
-            >
-              Book a Painless Treatment Today — Results You Can See.
-            </p>
-            <p
-              className="text-sm md:text-lg mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed px-4"
-              style={{ color: "#bfdbfe" }}
-            >
-              Dhaka's Most Trusted Oral & Maxillofacial Surgery Clinic{" "}
-              <span className="text-white font-semibold">
-                — 1500+ Transformed Smiles
-              </span>
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-8 md:mb-12 px-4">
-              <Link
-                to="/book"
-                className="btn-primary text-sm md:text-base px-6 md:px-8 py-3 md:py-4 shadow-xl"
-              >
-                Book Appointment Now
-              </Link>
-              <Link
-                to="/gallery"
-                className="btn-secondary text-sm md:text-base px-6 md:px-8 py-3 md:py-4"
-              >
-                See Transformations <ArrowRight size={16} />
-              </Link>
-            </div>
-            <div className="flex flex-wrap justify-center items-center gap-2 md:gap-4 px-4">
-              {[
-                { label: "Ph.D.", sub: "Tokyo" },
-                { label: "MS", sub: "Korea" },
-                { label: "FIAOO", sub: "UK" },
-                { label: "FICD", sub: "USA" },
-                { label: "Postdoc", sub: "Australia" },
-              ].map((c) => (
-                <div
-                  key={c.label}
-                  className="flex flex-col items-center rounded-xl px-3 md:px-4 py-2 md:py-3 border border-white/20"
-                  style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
-                >
-                  <span className="text-white font-bold text-xs md:text-sm">
-                    {c.label}
-                  </span>
-                  <span className="text-xs" style={{ color: "#93c5fd" }}>
-                    {c.sub}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-          )}
-          {/* Baked-text slides hide the full overlay (which carries its own
-              CTA), so surface a single booking CTA anchored to a safe bottom
-              zone. This keeps a conversion path on every slide without
-              covering the printed artwork. */}
-          {!showOverlayText && (
-            <div className="absolute bottom-6 left-1/2 z-20 -translate-x-1/2 px-4">
-              <Link
-                to="/book"
-                className="btn-primary text-sm md:text-base px-6 md:px-8 py-3 md:py-4 shadow-xl"
-              >
-                Book Appointment Now
-              </Link>
-            </div>
-          )}
+
+          {/* Navigation Arrows */}
           <button
             type="button"
             onClick={showPreviousHeroSlide}
-            className="absolute left-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/20 text-white transition-colors hover:bg-black/35 md:left-5 md:h-12 md:w-12"
+            className="absolute left-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/20 text-white transition-colors hover:bg-black/40 md:left-5 md:h-12 md:w-12"
             aria-label="Previous banner"
           >
             <ChevronLeft size={30} strokeWidth={2.5} />
@@ -306,11 +202,28 @@ export default function Home() {
           <button
             type="button"
             onClick={showNextHeroSlide}
-            className="absolute right-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/20 text-white transition-colors hover:bg-black/35 md:right-5 md:h-12 md:w-12"
+            className="absolute right-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/20 text-white transition-colors hover:bg-black/40 md:right-5 md:h-12 md:w-12"
             aria-label="Next banner"
           >
             <ChevronRight size={30} strokeWidth={2.5} />
           </button>
+
+          {/* Slide Indicators / Dots */}
+          <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
+            {heroSlides.map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                onClick={() => setActiveHeroSlide(index)}
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  activeHeroSlide === index
+                    ? "w-8 bg-white shadow-md"
+                    : "w-2.5 bg-white/50 hover:bg-white/75"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </section>
 
         {/* PAIN POINTS */}
